@@ -1,0 +1,108 @@
+#include <stdio.h>
+
+int main(void) {
+
+	int intResult = 0;
+	double doubleResult = 0.0;
+
+	// + 연산자
+	intResult = 3 + 4;
+	doubleResult = 3.0 + 4.0;
+	printf("%d\n", intResult);
+	printf("%lf\n", doubleResult);
+
+	// - 연산자
+	intResult = 3 - 4;
+	doubleResult = 3.0 - 4.0;
+	printf("%d\n", intResult);
+	printf("%lf\n", doubleResult);
+
+	// * 연산자
+	intResult = 3 * 4;
+	doubleResult = 3.0 * 4.0;
+	printf("%d\n", intResult);
+	printf("%lf\n", doubleResult);
+
+	// / 연산자
+	intResult = 3 / 4;
+	doubleResult = 3.0 / 4.0;
+	printf("%d\n", intResult);
+	printf("%lf\n", doubleResult);
+
+	//증감연산자
+	printf("Start testing increament operator ! \n");
+
+	intResult = 0;
+	printf("intResult : %d\n", intResult);
+	printf("intResult : %d\n", intResult++); // 후위 증가 연산자, 해당 연산자가 포함된 줄을 
+	printf("intResult : %d\n", intResult);
+	intResult++;
+	printf("intResult : %d\n", intResult);
+	printf("intResult : %d\n", ++intResult); // 전위 증가 연산자, 해당 연산을 한 후에 줄을 실행.
+	printf("intResult : %d\n", intResult);
+
+
+	//감소 연산자
+	printf("Start testing decreament operator ! \n");
+
+	intResult = 0;
+	printf("intResult : %d\n", intResult);
+	printf("intResult : %d\n", intResult--); // 후위 증가 연산자, 해당 연산자가 포함된 줄을 
+	printf("intResult : %d\n", intResult);
+	intResult--;
+	printf("intResult : %d\n", intResult);
+	printf("intResult : %d\n", --intResult); // 전위 증가 연산자, 해당 연산을 한 후에 줄을 실행.
+	printf("intResult : %d\n", intResult);
+
+
+	//관계 연산자
+	//연산 결과가 참이면1, 거짓이면 0을 반환
+	//---------------------------------------------------
+
+	// < 
+	printf("is %d smaller than %d ? %d\n", 3, 4, 3 < 4);
+
+	// >
+	printf("is %d smaller than %d ? %d\n", 3, 4, 3 > 4);
+
+	// ==
+	printf("is %d smaller than %d ? %d\n", 3, 4, 3 == 4);
+
+	//<=
+	printf("is %d same with or smaller than %d ? %d\n", 3, 4, 3 <= 4);
+
+	//>=
+	printf("is %d same with or smaller than %d ? %d\n", 3, 4, 3 >= 4);
+
+
+	//논리연산자
+	// 참의 기준 : 0이아님
+	// 거짓의 기준 : 0
+	// ----------------------------------------------------
+	int grade = 80;
+
+	// && (and연산자)
+	// 피연산자 두개가 모두 참일때 1 나머지경우 전부 0
+	printf(" is %d 30 < Grade and 80 > Greade? %d\n", grade, (30 < grade));
+
+	// || (or연산자)
+	// 피연산자 두개 중에 하나라도 참이면1 나머지경우 전부 0
+	printf(" is %d 30 < Grade and 80 > Grade? %d\n", grade, (30 < grade) || 80 > grade);
+
+	// !(not연산자)
+	// 단일 연산자 (피연산자가 하나인 경우)
+	// 피연산자 결과를 반전시킨다. 즉, 1이면 0, 0이면 1.
+	printf(" is %d not 30 < Grade %d\n", grade, !(30 < grade));
+
+
+	// 비트 연산자
+	//---------------------------------------------------------------
+
+	// & (비트 and 연산자. 피연산자가 2개. 참조 연산자는 피연산자가 하나로 별개임.)
+	printf("%d & %d = %d\n", 5, 10, 5 & 10);
+
+	// 5의 이진형태 = 00000101
+	// 10의 이진형태 = 00001010
+	// 따라서 결과는 0
+
+}
