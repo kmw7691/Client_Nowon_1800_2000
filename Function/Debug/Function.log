@@ -1,0 +1,5 @@
+﻿  main.c
+C:\Users\User\Documents\GitHub\aa\Client_C\Function\main.c(26,5): warning C4013: 'sum'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\User\Documents\GitHub\aa\Client_C\Function\main.c(28,5): warning C4013: 'sub'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\User\Documents\GitHub\aa\Client_C\Function\main.c(32,5): error C2084: 'int doSomething()' 함수에 이미 본문이 있습니다.
+C:\Users\User\Documents\GitHub\aa\Client_C\Function\test.h(8): message : 'doSomething'의 이전 정의를 참조하십시오.
