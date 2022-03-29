@@ -1,12 +1,18 @@
 #pragma warning(disable:4996)
 #include <stdio.h>
 
+void swap(int* a, int* b) {
+	int t = *a; // 임시로 사용할 지역변수 t에다가 a가 가리키는 주소안에 들어있는 값을 대입
+	*a = *b; // a가 가리키는 주소안에 들어있는 값에 b가 가리키는 주서안에 들어있는 값을 대입
+	*b = t; 
+}
+
 int main() {
 	
 	// 주소 : 메모리 번지
 
 	// & : 주소 연산자
-	int a = 3;
+	int a = 3; 
 	// scanf("%d", &a);
 	printf("%d\n", a);
 	printf("%d\n", &a);
@@ -104,15 +110,10 @@ int main() {
 
 	int _a = 1, _b = 2;
 	// 함수 호출
-	swap(_a, _b);
+	swap(&_a, &_b);
 	printf("a = %d, b = %d \n", _a, _b); // 예상결과 a = 2, b = 1;
 
 	return 0;
 }
 
 
-void swap(int a, int b) {
-	int t = a;
-	a = b;
-	b = t;
-}
