@@ -15,7 +15,27 @@
       "ProjectGuid": "d8f58de1-52e0-4bf5-9287-c76a9dc46b48",
       "DisplayName": "DoublePointer",
       "ColorIndex": 2
+    },
+    "5cf83d06-6061-456d-8b7a-03f9552c2c68": {
+      "ProjectGuid": "5cf83d06-6061-456d-8b7a-03f9552c2c68",
+      "DisplayName": "FunctionPointer",
+      "ColorIndex": 3
+    },
+    "0332ae32-5406-48d4-84a9-7243559a9d08": {
+      "ProjectGuid": "0332ae32-5406-48d4-84a9-7243559a9d08",
+      "DisplayName": "Structure",
+      "ColorIndex": 4
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "기타 파일",
+      "ColorIndex": -1
+    },
+    "be67cf39-3912-4f90-b4eb-8a76f5fa21c3": {
+      "ProjectGuid": "be67cf39-3912-4f90-b4eb-8a76f5fa21c3",
+      "DisplayName": "Union",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 6
 }
