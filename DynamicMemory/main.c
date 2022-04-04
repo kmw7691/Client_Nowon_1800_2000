@@ -1,4 +1,6 @@
+#pragma warning (disable:4996)
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h> // 동적 할당 함수들이 들어있는 헤더파일
 
 // 동적 메모리 할당 ( 힙 영역에 메모리를 동적으로 할당 )
@@ -22,8 +24,32 @@
 // 쓰는이유 :
 // 이미 할당했지만 할당한 공간의 크기를 변경하고 싶을때 &
 // 기존 쓰던 주소를 유지하고 싶을때
+// 만약 포인터가 null일 경우, malloc 과 똑같이 동작한다.
 
-int main() {
+// DOS 창에서 실행파일 실행시
+// C\: > 실행파일 이름
+// 이라고 하면 단순 실행되지만 특별한 기능이나 옵션을 부여하고싶을때
+// C\: > 실행파일이름 문자열1 문자열2 ...
+// 형태로 써주면
+// 모든 문자열을 동적할당한 후에 main함수 인자로 넘겨준다
+
+int main(int argc, char **argv) {
+
+	// argc : argument count, 문자열 갯수
+	// argv : argument vector, 문자열 배열, 끝에는 null추가
+
+	for (int i = 0; i < argc; i++)
+	{
+		printf("%s\n", argv[i]);
+	}
+
+	while(*argv)
+	{
+		printf("%s\n", *argv);
+		argv++;
+	}
+
+
 	int* p;
 	p = (int*)malloc(sizeof(int));
 	
@@ -35,7 +61,7 @@ int main() {
 	p2 = &a;
 	// free
 	// 인자로 넣어준 포인터의 값(주소)에 접근해서
-	// 포인터의 자료형 크기만큼 메모리를 해제한다.
+	// 해당 포인터 주소부터 할당받은 영역을 해제함.
 	//
 	// 선언된 변수의 주소를 포인터에 대입해서 사용할때는
 	// 포인터는 스택영역의 주소를 가리키고 있기때문에 
@@ -63,6 +89,30 @@ int main() {
 	p = (int*)realloc(p, count * sizeof(int));
 
 	free(p);
+
+	printf("\n");
+
+	// 입력 문자열을 저장하는 예시
+	char input[100];
+	count = 3;
+
+	char** spp;
+
+	spp = (char**)malloc(count * sizeof(char*));
+	if (spp == NULL) exit(1);
+
+	for (int i = 0; i < count; i++)
+	{
+		scanf("%s", input);
+		spp[i] = (char*)malloc(strlen(input) + 1);
+		strcpy(spp[i], input);
+	}
+
+	for (int i = 0; i < count; i++)
+	{
+		printf("%s (%d).", spp[i], strlen(spp[i]));
+		free(spp[i]);
+	}
 
 	return 0;
 }
