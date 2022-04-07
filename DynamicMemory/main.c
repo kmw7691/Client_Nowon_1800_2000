@@ -113,6 +113,8 @@ int main(int argc, char **argv) {
 		printf("%s (%d).", spp[i], strlen(spp[i]));
 		free(spp[i]);
 	}
+	
+	free(spp);
 
 	return 0;
 }
