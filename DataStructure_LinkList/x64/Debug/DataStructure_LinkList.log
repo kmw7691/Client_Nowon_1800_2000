@@ -1,4 +1,0 @@
-﻿  main.c
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\DataStructure_LinkList\main.c(84,6): error C2059: 구문 오류: ')'
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\DataStructure_LinkList\main.c(99,12): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\DataStructure_LinkList\main.c(108,1): fatal error C1004: 예기치 않은 파일의 끝이 나타났습니다.

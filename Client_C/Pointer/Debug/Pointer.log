@@ -1,0 +1,13 @@
+﻿  main.c
+C:\Users\User\Documents\GitHub\aa\Client_C\Pointer\main.c(18,9): warning C4477: 'printf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int *'입니다.
+C:\Users\User\Documents\GitHub\aa\Client_C\Pointer\main.c(32,9): warning C4477: 'printf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int *'입니다.
+C:\Users\User\Documents\GitHub\aa\Client_C\Pointer\main.c(36,8): warning C4133: '=': 'double *'과(와) 'int *' 사이의 형식이 호환되지 않습니다.
+C:\Users\User\Documents\GitHub\aa\Client_C\Pointer\main.c(88,22): warning C4474: 'printf' : 서식 문자열에 전달된 인수가 너무 많습니다.
+C:\Users\User\Documents\GitHub\aa\Client_C\Pointer\main.c(88,22): message : 자리 표시자 및 해당 매개 변수에는 variadic 인수가 0개 필요하지만 1개가 제공되었습니다.
+C:\Users\User\Documents\GitHub\aa\Client_C\Pointer\main.c(90,10): warning C4133: '=': 'double *'과(와) 'int *' 사이의 형식이 호환되지 않습니다.
+C:\Users\User\Documents\GitHub\aa\Client_C\Pointer\main.c(91,22): warning C4474: 'printf' : 서식 문자열에 전달된 인수가 너무 많습니다.
+C:\Users\User\Documents\GitHub\aa\Client_C\Pointer\main.c(91,22): message : 자리 표시자 및 해당 매개 변수에는 variadic 인수가 0개 필요하지만 1개가 제공되었습니다.
+C:\Users\User\Documents\GitHub\aa\Client_C\Pointer\main.c(99,10): warning C4133: '=': 'int *'과(와) 'double *' 사이의 형식이 호환되지 않습니다.
+C:\Users\User\Documents\GitHub\aa\Client_C\Pointer\main.c(100,8): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\aa\Client_C\Pointer\main.c(74,1): warning C4090: '초기화 중': 'const' 한정자가 서로 다릅니다.
+  Pointer.vcxproj -> C:\Users\User\Documents\GitHub\aa\Client_C\Debug\Pointer.exe
