@@ -73,7 +73,7 @@ int main() {
 	
 	// 클래스간의 대입연산 가능
 	coord1 = *coord2ptr;
-	(coord1 + *coord2ptr);
+	Coord coord3 = (coord1 + *coord2ptr);
 
 	cout << "(" << coord1.GetCoordX() << "," << coord1.GetCoordY() << ")" << endl;
 
