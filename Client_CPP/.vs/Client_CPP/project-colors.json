@@ -10,7 +10,22 @@
       "ProjectGuid": "3386a790-dc46-4c16-93f7-8f340d8d89c2",
       "DisplayName": "DynamicAlocation",
       "ColorIndex": 1
+    },
+    "e5de890f-a51b-40ab-8649-49696aed46ac": {
+      "ProjectGuid": "e5de890f-a51b-40ab-8649-49696aed46ac",
+      "DisplayName": "StringArray",
+      "ColorIndex": 2
+    },
+    "968b0887-f713-41bb-a8a6-058bc97f5eb5": {
+      "ProjectGuid": "968b0887-f713-41bb-a8a6-058bc97f5eb5",
+      "DisplayName": "Function",
+      "ColorIndex": 3
+    },
+    "328f2c50-ce9e-45af-bbdb-5994c8cbe45f": {
+      "ProjectGuid": "328f2c50-ce9e-45af-bbdb-5994c8cbe45f",
+      "DisplayName": "Class",
+      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 5
 }
