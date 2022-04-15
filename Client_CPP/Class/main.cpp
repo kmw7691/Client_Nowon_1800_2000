@@ -1,4 +1,9 @@
+#pragma warning(disable : 4996)
+
 #include <iostream>
+#include "Warrior.h"
+#include "Debuffer.h"
+#include <cstring>
 using namespace std;
 
 // 접근제한자
@@ -40,13 +45,13 @@ public:
 	// 소멸자 (얘도 함수)
 	~Coord() {};
 
-	const Coord& operator = (const Coord& _other) {
+	/*const Coord& operator = (const Coord& _other) {
 		this->_x = _other._x;
 		this->_y = _other._y;
 		// this 포인터 
 		// 현재 객체 자기 자신을 가리키는 포인터
 		// 클래스안에서 멤버에 접근할때는 this포인터가 생략되어있다.
-	}
+	}*/
 
 	// 연산자 정의
 	const Coord& operator + (const Coord& _other) {
@@ -79,6 +84,28 @@ int main() {
 
 	delete coord2ptr;
 
+	//Warrior* warrior = new Warrior();
+	Debuffer* debuffer = new Debuffer();
+
+	//debuffer->DecreaseHP(*warrior);
+	debuffer->DecreaseHP();
+	
+
+	//delete warrior;
+	delete debuffer;
+
+	Debuffer debuffer1;
+	debuffer1._damage = 10;
+	strcpy(debuffer1._name, "하급디버퍼");
+
+	Debuffer debuffer2 = debuffer1;	
+	cout << debuffer2._damage << "," << debuffer2._name << endl;
+
+	strcpy(debuffer2._name, "상급디버퍼");
+	debuffer2._damage = 30;
+	cout << "1번디버퍼" << debuffer1._damage << "," << debuffer1._name << endl;
+	cout << "2번디버퍼" << debuffer2._damage << "," << debuffer2._name << endl;
 
 	return 0;
 }
+
