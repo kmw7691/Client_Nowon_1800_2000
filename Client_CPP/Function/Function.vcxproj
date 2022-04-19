@@ -24,6 +24,7 @@
     <ProjectGuid>{968b0887-f713-41bb-a8a6-058bc97f5eb5}</ProjectGuid>
     <RootNamespace>Function</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Functions</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

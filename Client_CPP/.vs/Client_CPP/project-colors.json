@@ -35,7 +35,12 @@
       "ProjectGuid": "c971d45e-1f13-4f96-b250-f0fe55677dc5",
       "DisplayName": "DynamicArray",
       "ColorIndex": 5
+    },
+    "90d141d8-3a3a-42ed-823a-045a8a3ef114": {
+      "ProjectGuid": "90d141d8-3a3a-42ed-823a-045a8a3ef114",
+      "DisplayName": "Template",
+      "ColorIndex": 6
     }
   },
-  "NextColorIndex": 6
+  "NextColorIndex": 7
 }
