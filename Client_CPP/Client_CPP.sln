@@ -7,15 +7,17 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FirstProject", "FirstProjec
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DynamicAlocation", "DynamicAlocation\DynamicAlocation.vcxproj", "{3386A790-DC46-4C16-93F7-8F340D8D89C2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StringArray", "StringArray\StringArray.vcxproj", "{E5DE890F-A51B-40AB-8649-49696AED46AC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "String", "StringArray\StringArray.vcxproj", "{E5DE890F-A51B-40AB-8649-49696AED46AC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Function", "Function\Function.vcxproj", "{968B0887-F713-41BB-A8A6-058BC97F5EB5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Functions", "Function\Function.vcxproj", "{968B0887-F713-41BB-A8A6-058BC97F5EB5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class", "Class\Class.vcxproj", "{328F2C50-CE9E-45AF-BBDB-5994C8CBE45F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DynamicArray", "DynamicArray\DynamicArray.vcxproj", "{C971D45E-1F13-4F96-B250-F0FE55677DC5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Template", "Template\Template.vcxproj", "{90D141D8-3A3A-42ED-823A-045A8A3EF114}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinkedList", "LinkedList\LinkedList.vcxproj", "{501DA6CF-4023-4689-860C-CC26E4B2CF68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,14 @@ Global
 		{90D141D8-3A3A-42ED-823A-045A8A3EF114}.Release|x64.Build.0 = Release|x64
 		{90D141D8-3A3A-42ED-823A-045A8A3EF114}.Release|x86.ActiveCfg = Release|Win32
 		{90D141D8-3A3A-42ED-823A-045A8A3EF114}.Release|x86.Build.0 = Release|Win32
+		{501DA6CF-4023-4689-860C-CC26E4B2CF68}.Debug|x64.ActiveCfg = Debug|x64
+		{501DA6CF-4023-4689-860C-CC26E4B2CF68}.Debug|x64.Build.0 = Debug|x64
+		{501DA6CF-4023-4689-860C-CC26E4B2CF68}.Debug|x86.ActiveCfg = Debug|Win32
+		{501DA6CF-4023-4689-860C-CC26E4B2CF68}.Debug|x86.Build.0 = Debug|Win32
+		{501DA6CF-4023-4689-860C-CC26E4B2CF68}.Release|x64.ActiveCfg = Release|x64
+		{501DA6CF-4023-4689-860C-CC26E4B2CF68}.Release|x64.Build.0 = Release|x64
+		{501DA6CF-4023-4689-860C-CC26E4B2CF68}.Release|x86.ActiveCfg = Release|Win32
+		{501DA6CF-4023-4689-860C-CC26E4B2CF68}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

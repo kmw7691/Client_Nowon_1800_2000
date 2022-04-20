@@ -1,2 +1,11 @@
 ﻿  main.cpp
-  Template.vcxproj -> C:\Client_Nowon_1800_2000\Client_CPP\x64\Debug\Template.exe
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\Template\main.cpp(45,2): error C2562: 'ForceSum': 'void' 함수에서 값을 반환하고 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\Template\main.cpp(11): message : 'ForceSum' 선언을 참조하십시오.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\Template\main.cpp(24): message : 컴파일되는 함수 템플릿 인스턴스화 'void ForceSum<int,double>(T &,K &)'에 대한 참조를 확인하세요.
+          with
+          [
+              T=int,
+              K=double
+          ]
+  MyTemplate.cpp
+  코드를 생성하고 있습니다...

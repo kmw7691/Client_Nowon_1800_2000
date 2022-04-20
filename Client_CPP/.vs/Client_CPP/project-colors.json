@@ -40,7 +40,12 @@
       "ProjectGuid": "90d141d8-3a3a-42ed-823a-045a8a3ef114",
       "DisplayName": "Template",
       "ColorIndex": 6
+    },
+    "501da6cf-4023-4689-860c-cc26e4b2cf68": {
+      "ProjectGuid": "501da6cf-4023-4689-860c-cc26e4b2cf68",
+      "DisplayName": "LinkedList",
+      "ColorIndex": 7
     }
   },
-  "NextColorIndex": 7
+  "NextColorIndex": 8
 }
