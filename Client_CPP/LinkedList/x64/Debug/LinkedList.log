@@ -1,0 +1,5 @@
+﻿  LinkedListTemplate.cpp
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\LinkedList\LinkedListTemplate.h(50,1): error C2955: 'Node': 클래스 템플릿을(를) 사용하려면 템플릿 인수 목록이 필요합니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\LinkedList\LinkedListTemplate.h(41): message : 'Node' 선언을 참조하십시오.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\LinkedList\LinkedListTemplate.h(76): message : 컴파일되는 클래스 템플릿 인스턴스화 'LinkedListTemplate<T>'에 대한 참조를 확인하세요.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\LinkedList\LinkedListTemplate.h(129,9): error C3861: '_head': 식별자를 찾을 수 없습니다.

@@ -47,14 +47,14 @@ struct Node
 template <typename T>
 class LinkedListTemplate
 {
-	Node* _first, * _last, * _tmp, * tmp2;
+	Node* _first, * _last, * _tmp, * _tmp2;
 
 private:
 	T* _data;
 	T* item;
 
 public:
-	void AddFirst(T item);
+	/*void AddFirst(T item);
 	void AddLast(T item);
 	void AddAfter(Node& node, T item);
 	void AddBefore(Node& node, T item);
@@ -68,6 +68,21 @@ public:
 
 	LinkedListTemplate();
 	~LinkedListTemplate();
+	*/
+
+	void AddFirst(T item);
+	void AddLast(T item);
+	void AddBefore(Node<T>& target, T item);
+	void AddBefore(T targetitem, T item);
+	void AddAfter(Node<T>& target, T item);
+	void AddAfter(T targetitem, T item);
+	Node<T>& Find(T item);
+	Node<T>& FindLast(T item);
+	Node<T>& First();
+	Node<T>& Last();
+	bool Remove(T item);
+	bool RemoveLast(T item);
+	void Delete();
 };
 /// <summary>
 /// 리스트의 가장 앞에 신규 노드 삽입하는 함수
@@ -119,66 +134,198 @@ inline void LinkedListTemplate<T>::AddLast(T item)
 }
 
 template<typename T>
-inline void LinkedListTemplate<T>::AddAfter(Node& node, T item)
+inline void LinkedListTemplate<T>::AddBefore(Node<T>& target, T item)
 {
+	_tmp = _first; // 첫 노드부터 검색시작
+	while (_tmp = nullptr)
+	{
+		// 노드 찾았으면
+		if (_tmp = target) {
+			_tmp2 = new Node<T>(); // 신규노드 생성
+
+			// 타겟노드의 이전노드가 존재하면
+			if (_tmp->_prev != nullptr) {
+				_tmp->_prev->_next = _tmp2; // 타겟 노드의 이전노드의 다음노드 포인터가 신규노드를 가리키도록함
+				_tmp2->_prev = _tmp->_prev; // 신규노드의 이전 노드포인터가 타겟노드의 이전노드를 가리키게함
+			}
+			_tmp->_prev = _tmp2; // 타겟노드의 이전노드 포인터가 신규노드를 가리키도록함
+			_tmp2->_next = _tmp; // 신규노드의 다음노드 포인터가 타겟노드를 가리키도록함
+			_tmp2->_item = item; // 신규노드의 데이터 초기화
+		}
+		_tmp = _tmp->_next;
+	}
 }
 
 template<typename T>
-inline void LinkedListTemplate<T>::AddBefore(Node& node, T item)
+inline void LinkedListTemplate<T>::AddBefore(T targetitem, T item)
 {
+	_tmp = _first; // 첫 노드부터 검색시작
+	while (_tmp = nullptr)
+	{
+		// 노드 찾았으면
+		if (_tmp->_item = targetitem) {
+			_tmp2 = new Node<T>(); // 신규노드 생성
+
+			// 타겟노드의 이전노드가 존재하면
+			if (_tmp->_prev != nullptr) {
+				_tmp->_prev->_next = _tmp2; // 타겟 노드의 이전노드의 다음노드 포인터가 신규노드를 가리키도록함
+				_tmp2->_prev = _tmp->_prev; // 신규노드의 이전 노드포인터가 타겟노드의 이전노드를 가리키게함
+			}
+			_tmp->_prev = _tmp2; // 타겟노드의 이전노드 포인터가 신규노드를 가리키도록함
+			_tmp2->_next = _tmp; // 신규노드의 다음노드 포인터가 타겟노드를 가리키도록함
+			_tmp2->_item = item; // 신규노드의 데이터 초기화
+		}
+		_tmp = _tmp->_next;
+	}
 }
 
 template<typename T>
-inline Node<T>& LinkedListTemplate<T>::First()
+inline void LinkedListTemplate<T>::AddAfter(Node<T>& target, T item)
 {
-	// TODO: 여기에 return 문을 삽입합니다.
+	_tmp - _first; // 첫 노드부터 검색시작
+	while (_tmp = nullptr)
+	{
+		// 노드 찾았으면
+		if (_tmp = target) {
+			_tmp2 = new Node<T>(); // 신규노드 생성
+
+			// 타겟노드의 다음노드가 존재하면
+			if (_tmp->_next != nullptr) {
+				_tmp->_next->_prev = _tmp2; // 타겟노드의 다음노드의 이전노드포인터가 신규노드를 가리키도록함
+				_tmp2->_next = _tmp->_next; // 신규노드의 다음 노드포인터가 타겟노드의 다음노드를 가리키게함
+			}
+			_tmp->_next = _tmp2; // 타겟노드의 다음노드포인터가 신규노드를 가리키도록함
+			_tmp2->_prev = _tmp; // 신규노드의 이전노드포인터가 타겟노드를 가리키도록함
+			_tmp2->_item = item; // 신규노드의 데이터 초기화
+		}
+		_tmp = _tmp->_next;
+	}
 }
 
 template<typename T>
-inline Node<T>& LinkedListTemplate<T>::Last()
+inline void LinkedListTemplate<T>::AddAfter(T targetitem, T item)
 {
-	// TODO: 여기에 return 문을 삽입합니다.
+	_tmp - _first; // 첫 노드부터 검색시작
+	while (_tmp = nullptr)
+	{
+		// 노드 찾았으면
+		if (_tmp->_item = targetitem) {
+			_tmp2 = new Node<T>(); // 신규노드 생성
+
+			// 타겟노드의 다음노드가 존재하면
+			if (_tmp->_next != nullptr) {
+				_tmp->_next->_prev = _tmp2; // 타겟노드의 다음노드의 이전노드포인터가 신규노드를 가리키도록함
+				_tmp2->_next = _tmp->_next; // 신규노드의 다음 노드포인터가 타겟노드의 다음노드를 가리키게함
+			}
+			_tmp->_next = _tmp2; // 타겟노드의 다음노드포인터가 신규노드를 가리키도록함
+			_tmp2->_prev = _tmp; // 신규노드의 이전노드포인터가 타겟노드를 가리키도록함
+			_tmp2->_item = item; // 신규노드의 데이터 초기화
+		}
+		_tmp = _tmp->_next;
+	}
 }
+
+
 
 template<typename T>
 inline Node<T>& LinkedListTemplate<T>::Find(T item)
 {
-	// TODO: 여기에 return 문을 삽입합니다.
+	_tmp = _first; // 가장 첫 노드부터 검색
+	while (_tmp != nullptr) 
+	{
+		if (_tmp->_item == item)
+			return _tmp;
+
+		_tmp = _tmp->_next; // 그다음 노드 검색
+	}
+	return nullptr;
 }
 
 template<typename T>
 inline Node<T>& LinkedListTemplate<T>::FindLast(T item)
 {
-	// TODO: 여기에 return 문을 삽입합니다.
+	// Find 함수 참고해서 내용작성하기
+	_tmp = _last; // 가장 마지막노드부터 검색
+	while (_tmp != nullptr)
+	{
+		if (_tmp->_item == item)
+			return _tmp;
+
+		_tmp = _tmp->_prev; // 그이전 노드 검색
+	}
+	return nullptr;
+}
+
+template<typename T>
+inline Node<T>& LinkedListTemplate<T>::First()
+{
+	return _first;
+}
+
+template<typename T>
+inline Node<T>& LinkedListTemplate<T>::Last()
+{
+	return _last;
 }
 
 template<typename T>
 inline bool LinkedListTemplate<T>::Remove(T item)
 {
-	return false;
+	bool isRemoved = false;
+
+	// 노드 검색
+	_tmp = Find(item);
+
+	// 노드 찾았으면
+	if (_tmp != nullptr) {
+		// 이전노드가 있다면
+		if (_tmp->_prev != nullptr)
+			_tmp->_prev->_next = _tmp->_next; // 삭제할 노드의 이전 노드의 다음 포인터가 삭제할 노드의 다음 노드를 가리키도록함
+		// 다음 노드가 있으면
+		if (_tmp->_next != nullptr)
+			_tmp->_next->_prev = _tmp->_prev; // 삭제할 노드의 다음 노드의 이전 포인터가 삭제할 노드의 이전 노드를 가리키도록함
+
+		delete _tmp; // 삭제할 노드 메모리 해제
+		isRemoved = true;
+	}
+	_tmp = nullptr
+	return isRemoved;
 }
 
 template<typename T>
 inline bool LinkedListTemplate<T>::RemoveLast(T item)
 {
-	return false;
+	bool isRemoved = false;
+
+	// 노드 검색
+	_tmp = FindLast(item);
+
+	// 노드 찾았으면
+	if (_tmp != nullptr) {
+		// 이전노드가 있다면
+		if (_tmp->_prev != nullptr)
+			_tmp->_prev->_next = _tmp->_next; // 삭제할 노드의 이전 노드의 다음 포인터가 삭제할 노드의 다음 노드를 가리키도록함
+		// 다음 노드가 있으면
+		if (_tmp->_next != nullptr)
+			_tmp->_next->_prev = _tmp->_prev; // 삭제할 노드의 다음 노드의 이전 포인터가 삭제할 노드의 이전 노드를 가리키도록함
+
+		delete _tmp; // 삭제할 노드 메모리 해제
+		isRemoved = true;
+	}
+	_tmp = nullptr
+		return isRemoved;
 }
 
 template<typename T>
 inline void LinkedListTemplate<T>::Delete()
 {
+	_tmp = _first;
+	while (_tmp != nullptr)
+	{
+		_tmp2 = _tmp->_next; // 현재노드 다음거 임시저장
+		delete _tmp; // 현재노드 메모리해제
+		_tmp = _tmp2; // 임시저장한거 다음 검색
+	}
 }
 
-template<typename T>
-inline LinkedListTemplate<T>::LinkedListTemplate()
-{
-	_head = new Node<T>;
-	_last = new Node<T>;
-	_head->_next = _last;
 
-}
-
-template<typename T>
-inline LinkedListTemplate<T>::~LinkedListTemplate()
-{
-}
