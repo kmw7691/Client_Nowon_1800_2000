@@ -45,7 +45,12 @@
       "ProjectGuid": "501da6cf-4023-4689-860c-cc26e4b2cf68",
       "DisplayName": "LinkedList",
       "ColorIndex": 7
+    },
+    "aa1e2ffa-98cd-4314-83f9-15de14562242": {
+      "ProjectGuid": "aa1e2ffa-98cd-4314-83f9-15de14562242",
+      "DisplayName": "BinaryTree",
+      "ColorIndex": 8
     }
   },
-  "NextColorIndex": 8
+  "NextColorIndex": 9
 }
