@@ -25,6 +25,6 @@ public:
 	bool Remove(int item);
 
 private:
-	Node* FindLeaf(Node* start);
+	Node* FindVeryLeftLeaf(Node* start, Node* parent);
 };
 

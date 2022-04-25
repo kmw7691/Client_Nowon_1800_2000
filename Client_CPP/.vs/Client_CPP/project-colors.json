@@ -50,7 +50,12 @@
       "ProjectGuid": "aa1e2ffa-98cd-4314-83f9-15de14562242",
       "DisplayName": "BinaryTree",
       "ColorIndex": 8
+    },
+    "9a0dfc69-f4c7-487b-91aa-5dd51c3913db": {
+      "ProjectGuid": "9a0dfc69-f4c7-487b-91aa-5dd51c3913db",
+      "DisplayName": "HashTable",
+      "ColorIndex": 9
     }
   },
-  "NextColorIndex": 9
+  "NextColorIndex": 10
 }

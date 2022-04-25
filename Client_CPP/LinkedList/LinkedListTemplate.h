@@ -37,7 +37,7 @@ using namespace std;
 // void Delete()
 
 template <typename T>
-struct Node
+class Node
 {
 	T _item;
 	Node* _prev;
@@ -45,7 +45,7 @@ struct Node
 };
 
 template <typename T>
-class LinkedListTemplate
+class LinkedList
 {
 	Node* _first, * _last, * _tmp, * _tmp2;
 
@@ -88,7 +88,7 @@ public:
 /// 리스트의 가장 앞에 신규 노드 삽입하는 함수
 /// </summary>
 template<typename T>
-inline void LinkedListTemplate<T>::AddFirst(T item)
+inline void LinkedList<T>::AddFirst(T item)
 {
 	_tmp = new Node<T>(); // 신규노드 생성
 
@@ -111,7 +111,7 @@ inline void LinkedListTemplate<T>::AddFirst(T item)
 }
 
 template<typename T>
-inline void LinkedListTemplate<T>::AddLast(T item)
+inline void LinkedList<T>::AddLast(T item)
 {
 	_tmp = new Node<T>(); // 신규노드 생성
 	_tmp->_item = item;// 신규노드 값 대입
@@ -134,7 +134,7 @@ inline void LinkedListTemplate<T>::AddLast(T item)
 }
 
 template<typename T>
-inline void LinkedListTemplate<T>::AddBefore(Node<T>& target, T item)
+inline void LinkedList<T>::AddBefore(Node<T>& target, T item)
 {
 	_tmp = _first; // 첫 노드부터 검색시작
 	while (_tmp = nullptr)
@@ -157,7 +157,7 @@ inline void LinkedListTemplate<T>::AddBefore(Node<T>& target, T item)
 }
 
 template<typename T>
-inline void LinkedListTemplate<T>::AddBefore(T targetitem, T item)
+inline void LinkedList<T>::AddBefore(T targetitem, T item)
 {
 	_tmp = _first; // 첫 노드부터 검색시작
 	while (_tmp = nullptr)
@@ -180,7 +180,7 @@ inline void LinkedListTemplate<T>::AddBefore(T targetitem, T item)
 }
 
 template<typename T>
-inline void LinkedListTemplate<T>::AddAfter(Node<T>& target, T item)
+inline void LinkedList<T>::AddAfter(Node<T>& target, T item)
 {
 	_tmp - _first; // 첫 노드부터 검색시작
 	while (_tmp = nullptr)
@@ -203,7 +203,7 @@ inline void LinkedListTemplate<T>::AddAfter(Node<T>& target, T item)
 }
 
 template<typename T>
-inline void LinkedListTemplate<T>::AddAfter(T targetitem, T item)
+inline void LinkedList<T>::AddAfter(T targetitem, T item)
 {
 	_tmp - _first; // 첫 노드부터 검색시작
 	while (_tmp = nullptr)
@@ -228,7 +228,7 @@ inline void LinkedListTemplate<T>::AddAfter(T targetitem, T item)
 
 
 template<typename T>
-inline Node<T>& LinkedListTemplate<T>::Find(T item)
+inline Node<T>& LinkedList<T>::Find(T item)
 {
 	_tmp = _first; // 가장 첫 노드부터 검색
 	while (_tmp != nullptr) 
@@ -242,7 +242,7 @@ inline Node<T>& LinkedListTemplate<T>::Find(T item)
 }
 
 template<typename T>
-inline Node<T>& LinkedListTemplate<T>::FindLast(T item)
+inline Node<T>& LinkedList<T>::FindLast(T item)
 {
 	// Find 함수 참고해서 내용작성하기
 	_tmp = _last; // 가장 마지막노드부터 검색
@@ -257,19 +257,19 @@ inline Node<T>& LinkedListTemplate<T>::FindLast(T item)
 }
 
 template<typename T>
-inline Node<T>& LinkedListTemplate<T>::First()
+inline Node<T>& LinkedList<T>::First()
 {
 	return _first;
 }
 
 template<typename T>
-inline Node<T>& LinkedListTemplate<T>::Last()
+inline Node<T>& LinkedList<T>::Last()
 {
 	return _last;
 }
 
 template<typename T>
-inline bool LinkedListTemplate<T>::Remove(T item)
+inline bool LinkedList<T>::Remove(T item)
 {
 	bool isRemoved = false;
 
@@ -293,7 +293,7 @@ inline bool LinkedListTemplate<T>::Remove(T item)
 }
 
 template<typename T>
-inline bool LinkedListTemplate<T>::RemoveLast(T item)
+inline bool LinkedList<T>::RemoveLast(T item)
 {
 	bool isRemoved = false;
 
@@ -317,7 +317,7 @@ inline bool LinkedListTemplate<T>::RemoveLast(T item)
 }
 
 template<typename T>
-inline void LinkedListTemplate<T>::Delete()
+inline void LinkedList<T>::Delete()
 {
 	_tmp = _first;
 	while (_tmp != nullptr)
