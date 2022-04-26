@@ -1,0 +1,7 @@
+﻿  HashTable.cpp
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\HashTable\LinkedListTemplate.h(51,1): error C2955: 'Node': 클래스 템플릿을(를) 사용하려면 템플릿 인수 목록이 필요합니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\HashTable\LinkedListTemplate.h(41): message : 'Node' 선언을 참조하십시오.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\HashTable\LinkedListTemplate.h(88): message : 컴파일되는 클래스 템플릿 인스턴스화 'LinkedList<T>'에 대한 참조를 확인하세요.
+  'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\bin\HostX64\x64\CL.exe'에서 내부 컴파일러 오류
+      자세한 내용을 보려면 Visual C++ [도움말] 메뉴에서
+   [기술 지원] 명령을 선택하거나 기술 지원 도움말 파일을 참조하십시오.

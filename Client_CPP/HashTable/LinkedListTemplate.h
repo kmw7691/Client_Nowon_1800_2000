@@ -39,6 +39,7 @@ using namespace std;
 template <typename T>
 class Node
 {
+public:
 	T _item;
 	Node* _prev;
 	Node* _next;
@@ -70,6 +71,7 @@ public:
 	~LinkedListTemplate();
 	*/
 
+	int Count();
 	void AddFirst(T item);
 	void AddLast(T item);
 	void AddBefore(Node<T>& target, T item);
@@ -84,6 +86,18 @@ public:
 	bool RemoveLast(T item);
 	void Delete();
 };
+template<typename T>
+inline int LinkedList<T>::Count()
+{
+	int tmpCount = 0;
+	_tmp = _first;
+	while (_tmp != nullptr)
+	{
+		_tmp = _tmp->_next;
+		tmpCount++;
+	}
+	return tmpCount;
+}
 /// <summary>
 /// 리스트의 가장 앞에 신규 노드 삽입하는 함수
 /// </summary>
@@ -234,11 +248,12 @@ inline Node<T>& LinkedList<T>::Find(T item)
 	while (_tmp != nullptr) 
 	{
 		if (_tmp->_item == item)
-			return _tmp;
+			return *_tmp;
 
 		_tmp = _tmp->_next; // 그다음 노드 검색
 	}
-	return nullptr;
+	_tmp = nullptr;
+	return *_tmp;
 }
 
 template<typename T>
@@ -253,7 +268,8 @@ inline Node<T>& LinkedList<T>::FindLast(T item)
 
 		_tmp = _tmp->_prev; // 그이전 노드 검색
 	}
-	return nullptr;
+	_tmp = nullptr;
+	return *_tmp;
 }
 
 template<typename T>
