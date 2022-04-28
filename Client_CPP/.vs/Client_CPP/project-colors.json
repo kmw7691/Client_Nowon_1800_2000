@@ -55,7 +55,12 @@
       "ProjectGuid": "9a0dfc69-f4c7-487b-91aa-5dd51c3913db",
       "DisplayName": "HashTable",
       "ColorIndex": 9
+    },
+    "dc3266b5-3e59-4937-9cd0-16244fa787aa": {
+      "ProjectGuid": "dc3266b5-3e59-4937-9cd0-16244fa787aa",
+      "DisplayName": "ClassInhentance",
+      "ColorIndex": 10
     }
   },
-  "NextColorIndex": 10
+  "NextColorIndex": 11
 }

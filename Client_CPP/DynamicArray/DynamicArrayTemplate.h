@@ -19,6 +19,14 @@ public:
 
 	DynamicArray();
 	~DynamicArray();
+
+	T& operator[] (int index) {
+		if (index > 0 &&
+			index < _length) {
+			throw "배열 인덱스가 허용범위를 넘어섰습니다";
+		}
+		return _data[index];
+	}
 };
 
 template <typename T>
