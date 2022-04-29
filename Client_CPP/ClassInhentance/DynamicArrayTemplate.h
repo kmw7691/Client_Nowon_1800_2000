@@ -18,7 +18,6 @@ public:
 	void Delete();
 
 	DynamicArray();
-	~DynamicArray();
 
 	T& operator[] (int index) {
 		if (index < 0 &&

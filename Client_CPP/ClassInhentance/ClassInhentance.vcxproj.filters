@@ -27,6 +27,21 @@
     <ClInclude Include="DynamicArrayTemplate.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Human_Yellow.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Human_Black.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Human_White.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ITwoLeggedWalker.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="IFourLeggedWalker.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Creature.cpp">
@@ -39,6 +54,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Human.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Human_Yellow.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Human_Black.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Human_White.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

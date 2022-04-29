@@ -143,11 +143,19 @@
     <ClInclude Include="Dog.h" />
     <ClInclude Include="DynamicArrayTemplate.h" />
     <ClInclude Include="Human.h" />
+    <ClInclude Include="Human_Black.h" />
+    <ClInclude Include="Human_White.h" />
+    <ClInclude Include="Human_Yellow.h" />
+    <ClInclude Include="IFourLeggedWalker.h" />
+    <ClInclude Include="ITwoLeggedWalker.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Creature.cpp" />
     <ClCompile Include="Dog.cpp" />
     <ClCompile Include="Human.cpp" />
+    <ClCompile Include="Human_Black.cpp" />
+    <ClCompile Include="Human_White.cpp" />
+    <ClCompile Include="Human_Yellow.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -15,3 +15,8 @@ void Human::PrintAllClothes()
 	}
 	cout << endl;
 }
+
+void Human::ITwoLeggedWalk()
+{
+	std::cout << "이족보행을 실시합니다" << std::endl;
+}
