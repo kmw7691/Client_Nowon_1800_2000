@@ -1,61 +1,56 @@
-﻿  Human.cpp
-  Human_Black.cpp
-  Human_White.cpp
-  Human_Yellow.cpp
-  main.cpp
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(17): error C2259: 'Human': 추상 클래스를 인스턴스화할 수 없습니다.
+﻿  main.cpp
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(18): error C2259: 'Human': 추상 클래스를 인스턴스화할 수 없습니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human.h(8): message : 'Human' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(17): message : 다음 멤버가 원인입니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(17): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(18): message : 다음 멤버가 원인입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(18): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(17,27): error C2259: 'Human': 추상 클래스를 인스턴스화할 수 없습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(18,27): error C2259: 'Human': 추상 클래스를 인스턴스화할 수 없습니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human.h(8): message : 'Human' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(17,27): message : 다음 멤버가 원인입니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(17,27): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(18,27): message : 다음 멤버가 원인입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(18,27): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(25): error C2259: 'Human_Yellow': 추상 클래스를 인스턴스화할 수 없습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(26): error C2259: 'Human_Yellow': 추상 클래스를 인스턴스화할 수 없습니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_Yellow.h(3): message : 'Human_Yellow' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(25): message : 다음 멤버가 원인입니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(25): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(25,48): error C2259: 'Human_Yellow': 추상 클래스를 인스턴스화할 수 없습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_Yellow.h(3): message : 'Human_Yellow' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(25,48): message : 다음 멤버가 원인입니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(25,48): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(26): error C2259: 'Human_Black': 추상 클래스를 인스턴스화할 수 없습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_Black.h(3): message : 'Human_Black' 선언을 참조하십시오.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(26): message : 다음 멤버가 원인입니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(26): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(26,45): error C2259: 'Human_Black': 추상 클래스를 인스턴스화할 수 없습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_Black.h(3): message : 'Human_Black' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(26,45): message : 다음 멤버가 원인입니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(26,45): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(26,48): error C2259: 'Human_Yellow': 추상 클래스를 인스턴스화할 수 없습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_Yellow.h(3): message : 'Human_Yellow' 선언을 참조하십시오.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(26,48): message : 다음 멤버가 원인입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(26,48): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(27): error C2259: 'Human_White': 추상 클래스를 인스턴스화할 수 없습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_White.h(3): message : 'Human_White' 선언을 참조하십시오.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(27): error C2259: 'Human_Black': 추상 클래스를 인스턴스화할 수 없습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_Black.h(3): message : 'Human_Black' 선언을 참조하십시오.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(27): message : 다음 멤버가 원인입니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(27): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(27,45): error C2259: 'Human_White': 추상 클래스를 인스턴스화할 수 없습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_White.h(3): message : 'Human_White' 선언을 참조하십시오.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(27,45): error C2259: 'Human_Black': 추상 클래스를 인스턴스화할 수 없습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_Black.h(3): message : 'Human_Black' 선언을 참조하십시오.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(27,45): message : 다음 멤버가 원인입니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(27,45): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(42): error C2259: 'Human_Yellow': 추상 클래스를 인스턴스화할 수 없습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_Yellow.h(3): message : 'Human_Yellow' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(42): message : 다음 멤버가 원인입니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(42): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(43): error C2259: 'Human_White': 추상 클래스를 인스턴스화할 수 없습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(28): error C2259: 'Human_White': 추상 클래스를 인스턴스화할 수 없습니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_White.h(3): message : 'Human_White' 선언을 참조하십시오.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(28): message : 다음 멤버가 원인입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(28): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(28,45): error C2259: 'Human_White': 추상 클래스를 인스턴스화할 수 없습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_White.h(3): message : 'Human_White' 선언을 참조하십시오.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(28,45): message : 다음 멤버가 원인입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(28,45): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(43): error C2259: 'Human_Yellow': 추상 클래스를 인스턴스화할 수 없습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_Yellow.h(3): message : 'Human_Yellow' 선언을 참조하십시오.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(43): message : 다음 멤버가 원인입니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(43): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(44): error C2259: 'Human_Black': 추상 클래스를 인스턴스화할 수 없습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_Black.h(3): message : 'Human_Black' 선언을 참조하십시오.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(44): error C2259: 'Human_White': 추상 클래스를 인스턴스화할 수 없습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_White.h(3): message : 'Human_White' 선언을 참조하십시오.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(44): message : 다음 멤버가 원인입니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(44): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.
-  코드를 생성하고 있습니다...
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(45): error C2259: 'Human_Black': 추상 클래스를 인스턴스화할 수 없습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\Human_Black.h(3): message : 'Human_Black' 선언을 참조하십시오.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(45): message : 다음 멤버가 원인입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\main.cpp(45): message : 'void ITwoLeggedWalker::TwoLeggedWalk(void)': abstract입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_CPP\ClassInhentance\ITwoLeggedWalker.h(9): message : 'ITwoLeggedWalker::TwoLeggedWalk' 선언을 참조하십시오.

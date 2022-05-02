@@ -11,17 +11,18 @@ private:
 public:
 	int Length();
 	void Add(T item);
-	int Find(T item); 
-	bool IsExist(T item);            
-	bool Remove(T item); 
-	bool RemoveAt(int index); 
+	int Find(T item);
+	bool IsExist(T item);
+	bool Remove(T item);
+	bool RemoveAt(int index);
 	void Delete();
 
 	DynamicArray();
+	~DynamicArray();
 
 	T& operator[] (int index) {
 		if (index < 0 &&
-			index > _length) {
+			index >= _length) {
 			throw "배열 인덱스가 허용범위를 넘어섰습니다";
 		}
 		return _data[index];
@@ -34,8 +35,9 @@ int DynamicArray<T>::Length() {
 }
 
 template<typename T>
-void DynamicArray<T>::Add(T item)
+inline void DynamicArray<T>::Add(T item)
 {
+	// 배열의 크기가 충분하지 않으면 현재 길이의 두배로 늘린다.
 	if (_length >= _capacity) {
 		_capacity *= 2;
 		T* tmp = new T[_capacity];
@@ -52,7 +54,7 @@ void DynamicArray<T>::Add(T item)
 }
 
 template<typename T>
-int DynamicArray<T>::Find(T item)
+inline int DynamicArray<T>::Find(T item)
 {
 	for (int i = 0; i < _length; i++)
 	{
@@ -63,7 +65,7 @@ int DynamicArray<T>::Find(T item)
 }
 
 template<typename T>
-bool DynamicArray<T>::IsExist(T item)
+inline bool DynamicArray<T>::IsExist(T item)
 {
 	for (int i = 0; i < _length; i++)
 	{
@@ -74,7 +76,7 @@ bool DynamicArray<T>::IsExist(T item)
 }
 
 template<typename T>
-bool DynamicArray<T>::Remove(T item)
+inline bool DynamicArray<T>::Remove(T item)
 {
 	for (int i = 0; i < _length; i++)
 	{
@@ -83,6 +85,7 @@ bool DynamicArray<T>::Remove(T item)
 	}
 	return false;
 }
+
 
 template<typename T>
 inline bool DynamicArray<T>::RemoveAt(int index)
@@ -99,17 +102,23 @@ inline bool DynamicArray<T>::RemoveAt(int index)
 	return false;
 }
 
-template <typename T>
+template<typename T>
 inline void DynamicArray<T>::Delete()
 {
 	delete[] _data;
 }
 
-template <typename T>
+
+template<typename T>
 DynamicArray<T>::DynamicArray()
-	:DEFAULT_SIZE(1)
+	:DEFAULT_SIZE(1)// 이니셜라이저, 생성자 함수 내용 실행 전에 멤버 초기화를 할떄 사용한다.
 {
 	_length = 0;
 	_capacity = DEFAULT_SIZE;
 	_data = new T[_capacity];
+}
+
+template<typename T>
+DynamicArray<T>::~DynamicArray()
+{
 }

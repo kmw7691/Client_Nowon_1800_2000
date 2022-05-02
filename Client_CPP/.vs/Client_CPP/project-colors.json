@@ -60,7 +60,12 @@
       "ProjectGuid": "dc3266b5-3e59-4937-9cd0-16244fa787aa",
       "DisplayName": "ClassInhentance",
       "ColorIndex": 10
+    },
+    "52b9738f-14b7-4c63-a576-f7d501108459": {
+      "ProjectGuid": "52b9738f-14b7-4c63-a576-f7d501108459",
+      "DisplayName": "SolidExample",
+      "ColorIndex": 11
     }
   },
-  "NextColorIndex": 11
+  "NextColorIndex": 12
 }

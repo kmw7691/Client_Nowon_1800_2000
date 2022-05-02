@@ -5,5 +5,5 @@ class Human_Yellow :
 {
 public:
     void GoToAcademy();
+    void Grow();
 };
-
