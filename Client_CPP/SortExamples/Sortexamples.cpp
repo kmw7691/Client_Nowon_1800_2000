@@ -78,3 +78,48 @@ void Sortexamples::InsertionSort(int arr[], int length)
 		cout << endl;
 	}
 }
+
+void Sortexamples::Merge(int arr[], int start, int end, int mid)
+{
+	int* tmp = new int[end + 1];
+
+	for (int i = start; i <= end; i++)
+	{
+		tmp[i] = arr[i];
+	}
+
+	int part1 = start;
+	int part2 = mid + 1;
+	int index = start;
+
+	while (part1 <= mid &&
+		part2 <= end)
+	{
+		if (tmp[part1] <= tmp[part2])
+		{
+			arr[index++] = tmp[part1++];
+		}
+
+		else
+		{
+			arr[index++] = tmp[part2++];
+		}
+	}
+
+	for (int i = 0; i < mid - part1; i++)
+	{
+
+	}
+}
+
+void Sortexamples::MergeSort(int arr[], int start, int end)
+{
+	if (start < end) {
+		int mid = start + (end - 1) / 2;
+
+		MergeSort(arr, start, mid);
+		MergeSort(arr, mid + 1, end);
+
+		Merge(arr, start, end, mid);
+	}
+}
