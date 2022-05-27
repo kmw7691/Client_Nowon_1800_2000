@@ -20,5 +20,15 @@ int main() {
 	std::cout << "인설트소트시작" << arr3 << std::endl;
 	Sortexamples::InsertionSort(arr3, 10);
 
+	int const mergeSortArrayCount = 1;
+	int arr4[mergeSortArrayCount] = { 1 };
+	std::cout << "머지 소트시작" << arr4 << std::endl;
+	Sortexamples::MergeSort(arr4, 0, mergeSortArrayCount - 1);
+
+	for (int i = 0; i < mergeSortArrayCount - 1; i++)
+	{
+		std::cout << arr4[i];
+	}
+
 	return 0;
 }
