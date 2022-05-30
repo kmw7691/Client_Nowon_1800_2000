@@ -141,6 +141,31 @@ void Sortexamples::Merge(int arr[], int start, int end, int mid)
 	delete[] tmp;
 }
 
+int Sortexamples::Partition(int arr[], int start, int end)
+{
+	int pivot = arr[(start + end) / 2];
+
+	while (true)
+	{
+		while (arr[start] < pivot) start++;
+		while (arr[end] > pivot) end--;
+
+		if (start < end) {
+			int temp = arr[end];
+			arr[end] = arr[start];
+			arr[start] = temp;
+		}
+
+		else
+		{
+			return end;
+		}
+	}
+
+
+	return 0;
+}
+
 void Sortexamples::MergeSort(int arr[], int start, int end)
 {
 	if (start < end) {
@@ -150,5 +175,15 @@ void Sortexamples::MergeSort(int arr[], int start, int end)
 		MergeSort(arr, mid + 1, end);
 
 		Merge(arr, start, end, mid);
+	}
+}
+
+void Sortexamples::QuickSort(int arr[], int start, int end)
+{
+	if (start < end) {
+		int p = Partition(arr, start, end);
+
+		QuickSort(arr, start, p - 1);
+		QuickSort(arr, p + 1, end);
 	}
 }
