@@ -85,7 +85,17 @@
       "ProjectGuid": "ae1f016b-87ce-4272-86be-e34c20126afe",
       "DisplayName": "PriorityQueueExample",
       "ColorIndex": 15
+    },
+    "64c6778e-ea40-404f-ba15-7cad490c28cb": {
+      "ProjectGuid": "64c6778e-ea40-404f-ba15-7cad490c28cb",
+      "DisplayName": "BinarySearch",
+      "ColorIndex": 0
+    },
+    "6196a568-c9b1-4f6e-a788-19b581a983e3": {
+      "ProjectGuid": "6196a568-c9b1-4f6e-a788-19b581a983e3",
+      "DisplayName": "BinarySearch1",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 0
+  "NextColorIndex": 2
 }
