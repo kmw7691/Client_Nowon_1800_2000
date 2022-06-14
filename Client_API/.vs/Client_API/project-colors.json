@@ -20,7 +20,17 @@
       "ProjectGuid": "732b3439-d28e-4a4e-ac20-9dc8e53645ce",
       "DisplayName": "winAPIEngine_step_1",
       "ColorIndex": 2
+    },
+    "47afa7d5-c296-4810-bcb8-ad9636b8e88e": {
+      "ProjectGuid": "47afa7d5-c296-4810-bcb8-ad9636b8e88e",
+      "DisplayName": "winAPIEngine_step_2",
+      "ColorIndex": 3
+    },
+    "d37055ba-ffd8-47ab-b951-fabb09905a27": {
+      "ProjectGuid": "d37055ba-ffd8-47ab-b951-fabb09905a27",
+      "DisplayName": "winAPIEngine_step_3a",
+      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 5
 }

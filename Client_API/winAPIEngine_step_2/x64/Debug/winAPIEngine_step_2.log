@@ -1,0 +1,10 @@
+﻿  CAPIEngine.cpp
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIEngine_step_1\CAPIEngine.cpp(64,5): error C2065: 'mhDC': 선언되지 않은 식별자입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIEngine_step_1\CAPIEngine.cpp(64,18): error C2065: 'mhWnd': 선언되지 않은 식별자입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIEngine_step_1\CAPIEngine.cpp(103,15): error C2065: 'mhWnd': 선언되지 않은 식별자입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIEngine_step_1\CAPIEngine.cpp(103,22): error C2065: 'mhDC': 선언되지 않은 식별자입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIEngine_step_1\CAPIEngine.cpp(140,5): error C2065: 'mhWnd': 선언되지 않은 식별자입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIEngine_step_1\CAPIEngine.cpp(143,10): error C2065: 'mhWnd': 선언되지 않은 식별자입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIEngine_step_1\CAPIEngine.cpp(152,18): error C2065: 'mhWnd': 선언되지 않은 식별자입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIEngine_step_1\CAPIEngine.cpp(158,16): error C2065: 'mhWnd': 선언되지 않은 식별자입니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIEngine_step_1\CAPIEngine.cpp(159,18): error C2065: 'mhWnd': 선언되지 않은 식별자입니다.

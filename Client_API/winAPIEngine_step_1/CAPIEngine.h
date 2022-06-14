@@ -5,8 +5,21 @@
 class CAPIEngine
 {
 public:
+
+	CAPIEngine();
+	virtual ~CAPIEngine(); // 가상소멸자
+
 	BOOL Create(HINSTANCE hInstance, int nCmdShow);
 	MSG Run();
+
+	virtual void onCreate();
+	virtual void onDestroy();
+	virtual void onUpdate();
+
+	// 복사생성과 복사대입을 금지하기 위해 private로 접근제한
+private:
+	CAPIEngine(const CAPIEngine& tEngnine) {};
+	CAPIEngine& operator = (const CAPIEngine& tEngnine) {};
 
 protected:
 	ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -23,4 +36,3 @@ public:
 	WCHAR szTitle[MAX_LOADSTRING];
 	WCHAR szWindowClass[MAX_LOADSTRING];
 };
-

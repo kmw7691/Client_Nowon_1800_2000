@@ -16,6 +16,11 @@ public:
 	virtual void onDestroy();
 	virtual void onUpdate();
 
+	// 복사생성과 복사대입을 금지하기 위해 private로 접근제한
+private:
+	CAPIEngine(const CAPIEngine& tEngnine) {};
+	CAPIEngine& operator = (const CAPIEngine& tEngnine) {};
+
 protected:
 	ATOM                MyRegisterClass(HINSTANCE hInstance);
 	BOOL                InitInstance(HINSTANCE, int);

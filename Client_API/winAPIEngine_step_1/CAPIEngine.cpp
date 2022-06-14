@@ -7,6 +7,17 @@ HINSTANCE CAPIEngine::hInst = nullptr;
 
 
 
+CAPIEngine::CAPIEngine()
+{
+    memset(szWindowClass, 0, MAX_LOADSTRING * sizeof(WCHAR));
+
+    memset(szTitle, 0, MAX_LOADSTRING * sizeof(WCHAR));
+}
+
+CAPIEngine::~CAPIEngine()
+{
+}
+
 BOOL CAPIEngine::Create(HINSTANCE hInstance, int nCmdShow)
 {
     // TODO: 여기에 코드를 입력합니다.
@@ -25,29 +36,82 @@ BOOL CAPIEngine::Create(HINSTANCE hInstance, int nCmdShow)
     return TRUE;
 }
 
+void CAPIEngine::onCreate()
+{
+    WCHAR szTemp[256] = { 0 };
+    wsprintf(szTemp, L"CAPIEngine::Create\n");
+    OutputDebugString(szTemp);
+}
+
+void CAPIEngine::onDestroy()
+{
+    WCHAR szTemp[256] = { 0 };
+    wsprintf(szTemp, L"CAPIEngine::Destroy\n");
+    OutputDebugString(szTemp);
+}
+
+void CAPIEngine::onUpdate()
+{
+    WCHAR szTemp[256] = { 0 };
+    wsprintf(szTemp, L"CAPIEngine::OnUpdate\n");
+    OutputDebugString(szTemp);
+}
+
 MSG CAPIEngine::Run()
 {
     MSG msg = { 0 };
 
-    HACCEL hAccelTable = LoadAccelerators(hInst, MAKEINTRESOURCE(IDC_WINAPIENGINESTEP0));
     
 
-//    MSG msg;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    mhDC = GetDC(mhWnd);
+
+    onCreate();
+
+    HACCEL hAccelTable = LoadAccelerators(hInst, MAKEINTRESOURCE(IDC_WINAPIENGINESTEP0));
+
+
+    //    MSG msg;
+
+        //// 기본 메시지 루프입니다:
+        //while (GetMessage(&msg, nullptr, 0, 0))
+        //{
+        //    if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        //    {
+        //        TranslateMessage(&msg);
+        //        DispatchMessage(&msg);
+        //    }
+        //}
+
+    // 즉 윈도우 응용프로그램에 대한 처리는 if절에서 
+    // 그 외에 idle time은 게임세꼐의 갱신처리에 쓰겠다 라는 것임
+    while (WM_QUIT != msg.message)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
+        else
+        {
+            //게임루프패턴의 기본구조를 작성하였다
+            //OutputDebugString(L"game loop\n");
+            onUpdate();
+        }
     }
 
-   // return (int)msg.wParam;
+    onDestroy();
 
-	return msg;
+
+    ReleaseDC(mhWnd, mhDC);
+
+
+    // return (int)msg.wParam;
+
+    return msg;
 }
+
+
 
 ATOM CAPIEngine::MyRegisterClass(HINSTANCE hInstance)
 {
@@ -74,18 +138,28 @@ ATOM CAPIEngine::MyRegisterClass(HINSTANCE hInstance)
 
 BOOL CAPIEngine::InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-    hInst =  hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
+    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+    mhWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-    if (!hWnd)
+    if (!mhWnd)
     {
         return FALSE;
     }
 
-    ShowWindow(hWnd, nCmdShow);
-    UpdateWindow(hWnd);
+    // 클라이언트 영역의 크기를 이것으로 쓸것이다
+    RECT tRect = { 0,0,800,600 };
+    // 타이틀바, 메뉴 등을 고려하여 전체 윈도우 영역을 다시 계산해준다
+    AdjustWindowRect(&tRect, WS_OVERLAPPEDWINDOW, FALSE);
+    SetWindowPos(mhWnd, HWND_TOPMOST, 100, 100, tRect.right - tRect.left, tRect.bottom - tRect.top, SWP_NOMOVE | SWP_NOZORDER);
+
+
+
+
+
+    ShowWindow(mhWnd, nCmdShow);
+    UpdateWindow(mhWnd);
 
     return TRUE;
 
@@ -116,9 +190,46 @@ LRESULT CALLBACK  CAPIEngine::WndProc(HWND hWnd, UINT message, WPARAM wParam, LP
     case WM_PAINT:
     {
         PAINTSTRUCT ps;
-        HDC hdc = BeginPaint(hWnd, &ps);
+        // DC (Device Context)의 handle :DC는 그리기에 사용하는 장치 (장치, 장치에 관련된 설정값, 장치의 상태 등)을 추상화 해놓은 것이다
+        HDC hdc = BeginPaint(hWnd, &ps); // 그리기모드 시작
         // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-        EndPaint(hWnd, &ps);
+
+
+        //TextOut(hdc, 0, 0, L"test text output.", 17);
+        //TextOut(hdc, 0, 25, L"안녕하세요. 곽민우입니다.", 13);
+        //TextOut(hdc, 0, 50, L"I am a good boy.", 16);
+
+        //LPCWSTR tString = TEXT("WCHAR Test");
+        //TextOut(hdc, 0, 100, tString, 10);
+
+
+        ////사각형 그리기
+        //Rectangle(hdc, 200, 200, 200 + 100, 200 + 50);
+
+
+        //// 선분 그리기
+        //MoveToEx(hdc, 350, 200, NULL); // 시작점
+        //LineTo(hdc, 450, 300); // 끝점
+
+        //MoveToEx(hdc, 200, 50, NULL); // 시작점
+        //LineTo(hdc, 400, 100); // 끝점
+        //LineTo(hdc, 200, 150); // 끝점
+
+
+        //// 원그리기
+        //Ellipse(hdc, 400, 100, 400 + 100, 100 + 100);
+
+
+
+
+        // WM_PAINT윈도우 메시지는 플래그성 메시지임
+        // WM_PAINT가 발생하면 플래그변수에 1이 설정된다
+        // 만약, 이 플래그 변수의 값이 계속 1이면, 계속 WM_PAINT 메시지를 발생시킨다
+        // (그리기를 해야하는데 처리되지 않았기 때문)
+        // 그래서 CPU연산을 잡아먹게된다
+        // ENDPAINT는 호출되면 이러한 플래그 변수의 값을 0으로 설정한다
+
+        EndPaint(hWnd, &ps); //  그리기 모드가 끝났다는 의미
     }
     break;
     case WM_DESTROY:

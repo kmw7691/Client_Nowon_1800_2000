@@ -36,41 +36,69 @@ BOOL CAPIEngine::Create(HINSTANCE hInstance, int nCmdShow)
     return TRUE;
 }
 
+void CAPIEngine::onCreate()
+{
+    WCHAR szTemp[256] = { 0 };
+    wsprintf(szTemp, L"CAPIEngine::Create\n");
+    OutputDebugString(szTemp);
+}
+
+void CAPIEngine::onDestroy()
+{
+    WCHAR szTemp[256] = { 0 };
+    wsprintf(szTemp, L"CAPIEngine::Destroy\n");
+    OutputDebugString(szTemp);
+}
+
+void CAPIEngine::onUpdate()
+{
+    WCHAR szTemp[256] = { 0 };
+    wsprintf(szTemp, L"CAPIEngine::OnUpdate\n");
+    OutputDebugString(szTemp);
+}
+
 MSG CAPIEngine::Run()
 {
     MSG msg = { 0 };
+
+    onCreate();
 
     HACCEL hAccelTable = LoadAccelerators(hInst, MAKEINTRESOURCE(IDC_WINAPIENGINESTEP0));
     
 
 //    MSG msg;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    //// 기본 메시지 루프입니다:
+    //while (GetMessage(&msg, nullptr, 0, 0))
+    //{
+    //    if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+    //    {
+    //        TranslateMessage(&msg);
+    //        DispatchMessage(&msg);
+    //    }
+    //}
+
+    while (WM_QUIT != msg.message)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
+        else
+        {
+            OutputDebugString(L"game loop\n");
+        }
     }
+
+    onDestroy();
 
    // return (int)msg.wParam;
 
 	return msg;
 }
 
-void CAPIEngine::onCreate()
-{
-}
 
-void CAPIEngine::onDestroy()
-{
-}
-
-void CAPIEngine::onUpdate()
-{
-}
 
 ATOM CAPIEngine::MyRegisterClass(HINSTANCE hInstance)
 {

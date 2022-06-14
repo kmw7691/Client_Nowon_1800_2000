@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "winAPIEngine_step_0.h"
 #include "CAPIEngine.h"
-
+#include <windows.h>
 
 #define MAX_LOADSTRING 100
 
@@ -27,9 +27,42 @@ public:
     {
 
     }
-    ~KwakEngine()
+    virtual ~KwakEngine()
     {
 
+    }
+
+    // 복사생성과 복사대입을 금지하기 위해 private로 접근제한
+private:
+    KwakEngine(const KwakEngine& tEngnine) {};
+    KwakEngine& operator = (const KwakEngine& tEngnine) {};
+
+public:
+    virtual void onCreate() override
+    {
+        CAPIEngine::onCreate();
+
+        WCHAR szTemp[256] = { 0 };
+        wsprintf(szTemp, L"CAPIEngine::Create\n");
+        OutputDebugString(szTemp);
+    }
+
+    virtual void onDestroy() override
+    {
+        CAPIEngine::onDestroy();
+
+        WCHAR szTemp[256] = { 0 };
+        wsprintf(szTemp, L"CAPIEngine::Destroy\n");
+        OutputDebugString(szTemp);
+    }
+
+    virtual void onUpdate() override
+    {
+        CAPIEngine::onUpdate();
+
+        WCHAR szTemp[256] = { 0 };
+        wsprintf(szTemp, L"CAPIEngine::OnUpdate\n");
+        OutputDebugString(szTemp);
     }
 };
 
@@ -50,6 +83,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MSG msg = { 0 };
 
     msg = tEngine.Run();
+
+
+    // 이런 경우를 허용하지 말자
+    //KwakEngine tB = tEngine;
+
 
     return (int)msg.wParam;
     
