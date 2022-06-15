@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "main.h"
 #include "CAPIEngine.h"
-#include <windows.h>
+#include "CUnit.h"
 
 #define MAX_LOADSTRING 100
 
@@ -45,50 +45,60 @@ public:
         WCHAR szTemp[256] = { 0 };
         wsprintf(szTemp, L"CAPIEngine::Create\n");
         OutputDebugString(szTemp);
+
+        mpUnit = new CUnit();
     }
 
     virtual void onDestroy() override
     {
+        if (nullptr != mpUnit)
+        {
+            delete mpUnit;
+            mpUnit = nullptr;
+        }
+
         CAPIEngine::onDestroy();
 
-        WCHAR szTemp[256] = { 0 };
+     /*   WCHAR szTemp[256] = { 0 };
         wsprintf(szTemp, L"CAPIEngine::Destroy\n");
-        OutputDebugString(szTemp);
+        OutputDebugString(szTemp);*/
+
+        
     }
 
     virtual void onUpdate() override
     {
         CAPIEngine::onUpdate();
 
-        PAINTSTRUCT ps;
-        // DC (Device Context)의 handle :DC는 그리기에 사용하는 장치 (장치, 장치에 관련된 설정값, 장치의 상태 등)을 추상화 해놓은 것이다
-        HDC hdc = BeginPaint(mhWnd, &ps); // 그리기모드 시작
-        // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+        //PAINTSTRUCT ps;
+        //// DC (Device Context)의 handle :DC는 그리기에 사용하는 장치 (장치, 장치에 관련된 설정값, 장치의 상태 등)을 추상화 해놓은 것이다
+        //HDC hdc = BeginPaint(mhWnd, &ps); // 그리기모드 시작
+        //// TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
 
 
-        TextOut(hdc, 0, 0, L"test text output.", 17);
-        TextOut(hdc, 0, 25, L"안녕하세요. 곽민우입니다.", 13);
-        TextOut(hdc, 0, 50, L"I am a good boy.", 16);
+        //TextOut(hdc, 0, 0, L"test text output.", 17);
+        //TextOut(hdc, 0, 25, L"안녕하세요. 곽민우입니다.", 13);
+        //TextOut(hdc, 0, 50, L"I am a good boy.", 16);
 
-        LPCWSTR tString = TEXT("WCHAR Test");
-        TextOut(hdc, 0, 100, tString, 10);
-
-
-        ////사각형 그리기
-        Rectangle(hdc, 200, 200, 200 + 100, 200 + 50);
+        //LPCWSTR tString = TEXT("WCHAR Test");
+        //TextOut(hdc, 0, 100, tString, 10);
 
 
-        //// 선분 그리기
-        MoveToEx(hdc, 350, 200, NULL); // 시작점
-        LineTo(hdc, 450, 300); // 끝점
-
-        MoveToEx(hdc, 200, 50, NULL); // 시작점
-        LineTo(hdc, 400, 100); // 끝점
-        LineTo(hdc, 200, 150); // 끝점
+        //////사각형 그리기
+        //Rectangle(hdc, 200, 200, 200 + 100, 200 + 50);
 
 
-        //// 원그리기
-        Ellipse(hdc, 400, 100, 400 + 100, 100 + 100);
+        ////// 선분 그리기
+        //MoveToEx(hdc, 350, 200, NULL); // 시작점
+        //LineTo(hdc, 450, 300); // 끝점
+
+        //MoveToEx(hdc, 200, 50, NULL); // 시작점
+        //LineTo(hdc, 400, 100); // 끝점
+        //LineTo(hdc, 200, 150); // 끝점
+
+
+        ////// 원그리기
+        //Ellipse(hdc, 400, 100, 400 + 100, 100 + 100);
 
 
 
@@ -100,7 +110,7 @@ public:
         // 그래서 CPU연산을 잡아먹게된다
         // ENDPAINT는 호출되면 이러한 플래그 변수의 값을 0으로 설정한다
 
-        EndPaint(mhWnd, &ps); //  그리기 모드가 끝났다는 의미
+     //   EndPaint(mhWnd, &ps); //  그리기 모드가 끝났다는 의미
     }
 };
 
