@@ -24,6 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAPIEngine.h" />
+    <ClInclude Include="CTexture.h" />
     <ClInclude Include="CUnit.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="main.h" />
@@ -32,6 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CAPIEngine.cpp" />
+    <ClCompile Include="CTexture.cpp" />
     <ClCompile Include="CUnit.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

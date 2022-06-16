@@ -35,7 +35,7 @@ protected:
 
 public:
 	// 정적 멤버함수인 WndProc에서 사용하고 있으므로 static예약어를 적용
-	static HINSTANCE hInst;
+	HINSTANCE hInst;
 
 	WCHAR szTitle[MAX_LOADSTRING];
 	WCHAR szWindowClass[MAX_LOADSTRING];

@@ -2,7 +2,7 @@
 #include "Resource.h"
 
 
-HINSTANCE CAPIEngine::hInst = nullptr;
+//HINSTANCE CAPIEngine::hInst = nullptr;
 
 
 
@@ -179,7 +179,7 @@ LRESULT CALLBACK  CAPIEngine::WndProc(HWND hWnd, UINT message, WPARAM wParam, LP
         switch (wmId)
         {
         case IDM_ABOUT:
-            DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+            //DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
             break;
         case IDM_EXIT:
             DestroyWindow(hWnd);
