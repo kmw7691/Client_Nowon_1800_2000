@@ -36,3 +36,20 @@ bool CTexture::LoadTexture(HINSTANCE hInst, HDC thDC, LPCWSTR tFileName)
 
 	return true;
 }
+
+bool CTexture::CreateBackBuffer(HINSTANCE hIUnst, HDC thDC)
+{
+    mhDCMem = CreateCompatibleDC(thDC);
+
+    //현재화면DC와 호환되는 비트맵 이미지를 만드는 함수
+    CreateCompatibleBitmap(thDC, 800, 600);
+
+    mhOldBitmap = (HBITMAP)SelectObject(mhDCMem, mhBitmap);
+
+    mBitmapInfo;
+    GetObject(mhBitmap, sizeof(mBitmapInfo), &mBitmapInfo);
+
+
+
+    return true;
+}
