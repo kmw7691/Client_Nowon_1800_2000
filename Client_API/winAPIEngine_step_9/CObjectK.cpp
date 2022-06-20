@@ -1,6 +1,7 @@
 #include "CObjectK.h"
 
-CObjectK::CObjectK()
+CObjectK::CObjectK():
+	mPosition(), mRef(0)
 {
 }
 

@@ -7,6 +7,9 @@
 #include "CUnit.h"
 #include "CTexture.h"
 #include "CObjectK.h"
+#include <list>
+
+using namespace std;
 
 //#define MAX_LOADSTRING 100
 
@@ -27,6 +30,21 @@ public:
     CUnit* mpUnit = nullptr;
 
     CTexture* mpTexture = nullptr;
+
+    // k ref
+    /*
+    * Template  : 일반화 프로그래밍 기법을 c++에 문법으로 만들어놓은것
+    *  <-- 타입을 매개변수로 다루는 기법
+    * 
+    * Standard Template Library
+    * STL 의 3가지 구성요소
+    * 1)컨테이너 : 자료구조를 일반화시켜 만들어놓은것
+    * 2)반복자
+    * 3)알고리즘
+    */
+    list<CObjectK*> mObjectKs;
+
+
 
 public:
 
@@ -75,6 +93,14 @@ public:
         tpA = tpObject;
         tpA->AddRef();
 
+
+
+        mObjectKs.push_back(tpObject);
+        tpObject->AddRef();
+
+
+
+
         if (nullptr != tpA)
         {
             tpA->Release();
@@ -90,6 +116,16 @@ public:
 
     virtual void onDestroy() override
     {
+        for (list<CObjectK*>::iterator titor = mObjectKs.begin(); titor != mObjectKs.end(); ++titor)
+        {
+            if (nullptr != (*titor))
+            {
+                (*titor)->Release();
+                (*titor) = nullptr;
+            }
+        }
+
+
         if (nullptr != mpUnit)
         {
             delete mpUnit;

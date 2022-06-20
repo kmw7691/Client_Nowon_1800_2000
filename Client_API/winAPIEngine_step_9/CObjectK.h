@@ -1,4 +1,7 @@
 #pragma once
+#include "SVector2D.h"
+
+
 class CObjectK
 {
 public:
@@ -7,6 +10,11 @@ public:
 
 
 public:
+	//위치정보
+	SVector2D mPosition;
+
+
+
 	// 참조 카운팅 변수
 	int mRef = 0;
 
