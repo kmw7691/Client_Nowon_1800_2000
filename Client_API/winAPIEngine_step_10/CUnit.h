@@ -1,16 +1,18 @@
 #pragma once
 
+#include "CObjectK.h"
+
 
 class CAPIEngine;
 class CTexture;
 
 
 
-class CUnit
+class CUnit: public CObjectK
 {
 public:
 	CUnit();
-	~CUnit();
+	virtual ~CUnit();
 	// 복사생성자
 	CUnit(const CUnit& tUnit)
 	{
