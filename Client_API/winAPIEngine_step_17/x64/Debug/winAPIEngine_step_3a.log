@@ -1,0 +1,10 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(510,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(winAPIEngine_step_11.vcxproj, winAPIEngine_step_12.vcxproj, winAPIEngine_step_13.vcxproj, winAPIEngine_step_14.vcxproj, winAPIEngine_step_15.vcxproj, winAPIEngine_step_16.vcxproj, winAPIEngine_step_3a.vcxproj, winAPIEngine_step_4.vcxproj, winAPIEngine_step_5.vcxproj, winAPIEngine_step_6.vcxproj, winAPIEngine_step_8.vcxproj, winAPIEngine_step_9.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
+  main.cpp
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIEngine_step_17\CInputMgr.h(168,1): warning C4311: '형식 캐스트': 'const char *'에서 'DWORD'(으)로 포인터가 잘립니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIEngine_step_17\main.cpp(114): message : 컴파일되는 함수 템플릿 인스턴스화 'bool CInputMgr::AddKey<char[11],char>(const T (&),const char &)'에 대한 참조를 확인하세요.
+          with
+          [
+              T=char [11]
+          ]
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIEngine_step_17\CInputMgr.h(168,1): warning C4302: '형식 캐스트': 'const char *'에서 'DWORD'(으)로 잘립니다.
+  winAPIEngine_step_3a.vcxproj -> C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIEngine_step_17\x64\Debug\winAPIEngine_step_17.exe
