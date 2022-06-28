@@ -43,6 +43,8 @@ CActor::CActor(const CActor& t)
 	//mpEngine = t.mpEngine;
 }
 
+
+
 //주인공 기체의 일반탄환 발사
 void CActor::DoFire(vector<CBullet*>& tBullets)
 {
@@ -68,5 +70,20 @@ void CActor::DoFire(vector<CBullet*>& tBullets)
 	else
 	{
 		mCurIndexBullet = 0;
+	}
+}
+
+void CActor::Update(float tDeltaTime)
+{
+	CUnit::Update(tDeltaTime);
+
+	if (this->mPosition.mX - this->mWidth * 0.5f < 0.0f)
+	{
+		this->mPosition.mX = 0.0f + this->mWidth * 0.5f;
+	}
+
+	if (this->mPosition.mX + this->mWidth * 0.5f > 800.0f)
+	{
+		this->mPosition.mX = 800.0f - this->mWidth * 0.5f;
 	}
 }
