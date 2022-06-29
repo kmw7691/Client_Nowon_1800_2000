@@ -26,6 +26,8 @@ public:
 	}
 
 public:
+	virtual void Update(float tDeltaTime);
+
 	void DoFire(vector<CBullet*>& tBullets);
 
 public:

@@ -1,0 +1,14 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(496,5): warning MSB8004: Output 디렉터리가 슬래시로 끝나지 않습니다. Output 디렉터리의 적절한 평가를 허용하는 데 필요하므로 이 빌드 인스턴스에서 슬래시를 추가합니다.
+  CActor.cpp
+  CBullet.cpp
+  CEnemy.cpp
+  main.cpp
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIShooter_step_3\winAPIEngine\CInputMgr.h(168,1): warning C4311: '형식 캐스트': 'const char *'에서 'DWORD'(으)로 포인터가 잘립니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIShooter_step_3\winAPIShooter\main.cpp(102): message : 컴파일되는 함수 템플릿 인스턴스화 'bool CInputMgr::AddKey<char[11],char>(const T (&),const char &)'에 대한 참조를 확인하세요.
+          with
+          [
+              T=char [11]
+          ]
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIShooter_step_3\winAPIEngine\CInputMgr.h(168,1): warning C4302: '형식 캐스트': 'const char *'에서 'DWORD'(으)로 잘립니다.
+  코드를 생성하고 있습니다...
+  winAPIShooter.vcxproj -> C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIShooter_step_3\bin\winAPIShooter.exe

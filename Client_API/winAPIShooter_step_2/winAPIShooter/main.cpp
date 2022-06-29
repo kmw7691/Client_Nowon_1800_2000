@@ -156,6 +156,9 @@ public:
         mpEnemy = InstantObject<CEnemy>(PFEnemy);
         mpEnemy->AddRef();
 
+        mpEnemy->SetVelocity(SVector2D(+1.0f, 0.0f) * 100.0f);
+
+
         CBullet* tpBulletEnemy = nullptr;
         for (int ti = 0; ti < 10; ++ti)
         {

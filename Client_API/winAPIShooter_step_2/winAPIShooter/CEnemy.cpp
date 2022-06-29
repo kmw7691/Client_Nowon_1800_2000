@@ -15,6 +15,7 @@ CEnemy::CEnemy(const CEnemy& t)
 	*this = t;
 }
 
+
 void CEnemy::DoFire(vector<CBullet*>& tBullets)
 {
 	// 탄환발사알고리즘
@@ -39,5 +40,22 @@ void CEnemy::DoFire(vector<CBullet*>& tBullets)
 	else
 	{
 		mCurIndexBullet = 0;
+	}
+}
+
+
+void CEnemy::Update(float tDeltaTime)
+{
+	CUnit::Update(tDeltaTime);
+
+
+	//왼쪽경계
+	if (this->mPosition.mX - this->mWidth * 0.5f < 0.0f)
+	{
+		this->SetVelocity(SVector2D(+1.0f, 0.0f) * 100.0f);
+	}
+	if (this->mPosition.mX + this->mWidth * 0.5f > 800.0f)
+	{
+		this->SetVelocity(SVector2D(-1.0f, 0.0f) * 100.0f);
 	}
 }

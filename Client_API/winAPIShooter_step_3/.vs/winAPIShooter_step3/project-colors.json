@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "2317dc90-7ec1-4bdc-a440-3d77b3e904b9": {
+      "ProjectGuid": "2317dc90-7ec1-4bdc-a440-3d77b3e904b9",
+      "DisplayName": "winAPIShooter",
+      "ColorIndex": 0
+    },
+    "0f25d2c3-8846-47ce-b88b-bbe883d16320": {
+      "ProjectGuid": "0f25d2c3-8846-47ce-b88b-bbe883d16320",
+      "DisplayName": "winAPIEngine",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
