@@ -71,6 +71,10 @@ public:
     vector<CBullet*> mBulletAimeds;
 
 
+    CEnemy* mpEnemyCircled = nullptr;
+    vector<CBullet*> mBulletC;
+
+
     list<CObjectK*> mObjectKs;
 
 
@@ -212,7 +216,31 @@ public:
         mpEnemyAimed = InstantObject<CEnemy>(PFEnemy);
         mpEnemyAimed->AddRef();
 
-        mpEnemyAimed->SetVelocity(SVector2D(+1.0f, 0.0f) * 0.0f);
+        mpEnemyAimed->SetVelocity(SVector2D(+1.0f, 0.0f) * 25.0f);
+
+        CBullet* tpBulletC = nullptr;
+        for (int ti = 0; ti < 8*10; ++ti)
+        {
+            tpBulletC = InstantObject<CBullet>(PFBullet);
+            tpBulletC->AddRef();
+
+            //탄환은 생성시 비활성으로
+            tpBulletC->SetIsActive(false);
+
+
+
+            mBulletC.push_back(tpBulletC);
+            tpBulletC->AddRef();
+
+            tpBulletC->Release();
+            tpBulletC = nullptr;
+        }
+
+
+        mpEnemyCircled = InstantObject<CEnemy>(PFEnemy);
+        mpEnemyCircled->AddRef();
+
+        mpEnemyCircled->SetVelocity(SVector2D(+1.0f, 0.0f) * 50.0f);
     }
 //}
 
@@ -223,6 +251,17 @@ public:
     {
         //윈도우 API에서 제공하는 타이머 해제함수
         //KillTimer(mhWnd, 0);
+        vector<CBullet*>::iterator tItorBulletC;
+        for (tItorBulletC = mBulletC.begin(); tItorBulletC != mBulletC.end(); ++tItorBulletC)
+        {
+            DestroyObject(*tItorBulletC);
+        }
+        mBulletC.clear();
+
+
+
+        DestroyObject(mpEnemyCircled);
+
 
         vector<CBullet*>::iterator tItorBulletAimed;
         for (tItorBulletAimed = mBulletAimeds.begin(); tItorBulletAimed != mBulletAimeds.end(); ++tItorBulletAimed)
@@ -390,6 +429,32 @@ public:
             (*tEAimed)->Update(tDeltaTime);
         }
 
+
+        mpEnemyCircled->Update(tDeltaTime);
+
+        if (mpEnemyCircled->mTimeTick >= 2.0f)
+        {
+            //mpEnemyCircled->DoFireAimed(mBulletC, mpActor);
+
+            // mpEnemy->mTimeTick = 0.0f;
+            float tDiff = mpEnemyCircled->mTimeTick - 2.0f;
+            mpEnemyCircled->mTimeTick = tDiff;
+        }
+        else
+        {
+            //델타타임을 누적해간다
+            mpEnemyCircled->mTimeTick = mpEnemyCircled->mTimeTick + tDeltaTime;
+        }
+
+
+
+        vector<CBullet*>::iterator tEC;
+        for (tEC = mBulletC.begin(); tEC != mBulletC.end(); ++tEC)
+        {
+            (*tEC)->Update(tDeltaTime);
+        }
+
+
         //// render
 
         this->Clear(0.0f, 0.0f, 0.2f);
@@ -411,6 +476,15 @@ public:
         }
 
         mpEnemyAimed->Render();
+
+
+        mpEnemyCircled->Render();
+
+        vector<CBullet*>::iterator tECItor;
+        for (tECItor = mBulletC.begin(); tECItor != mBulletC.end(); ++tECItor)
+        {
+            (*tECItor)->Render();
+        }
 
 
         this->Present();

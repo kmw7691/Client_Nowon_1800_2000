@@ -33,6 +33,8 @@ public:
 
 	void DoFireAimed(vector<CBullet*>& tBullets, CObjectK* tpObject);
 
+	void DoFireCircled(vector<CBullet*>& tBullets);
+
 public:
 	int mCurIndexBullet = 0;
 

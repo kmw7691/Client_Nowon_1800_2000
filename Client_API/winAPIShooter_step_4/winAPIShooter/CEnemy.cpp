@@ -53,7 +53,6 @@ void CEnemy::DoFireAimed(vector<CBullet*>& tBullets, CObjectK* tpObject)
 	SVector2D tTargetP = tpObject->GetPosition();
 
 
-
 	SVector2D tVector = tTargetP - tStartP;
 
 	//순수한 방향 벡터를 구한다(크기가 1인벡터)
@@ -65,9 +64,6 @@ void CEnemy::DoFireAimed(vector<CBullet*>& tBullets, CObjectK* tpObject)
 
 	tBullets[mCurIndexBullet]->SetVelocity(tVelocity);
 	//tBullets[mCurIndexBullet]->SetVelocity(SVector2D(0.0f, 1.0f) * 200.0f);
-
-
-
 
 
 	tBullets[mCurIndexBullet]->SetIsActive(true);
@@ -86,6 +82,22 @@ void CEnemy::DoFireAimed(vector<CBullet*>& tBullets, CObjectK* tpObject)
 		mCurIndexBullet = 0;
 	}
 }
+
+
+
+void CEnemy::DoFireCircled(vector<CBullet*>& tBullets)
+{
+	for (int ti = 0; ti < 8; ++ti)
+	{
+		tBullets[ti]->SetPosition(this->GetPosition());
+
+
+
+
+		tBullets[ti]->SetIsActive(true);
+	}
+}
+
 
 
 void CEnemy::Update(float tDeltaTime)
