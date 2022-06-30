@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "2317dc90-7ec1-4bdc-a440-3d77b3e904b9": {
+      "ProjectGuid": "2317dc90-7ec1-4bdc-a440-3d77b3e904b9",
+      "DisplayName": "winAPIShooter",
+      "ColorIndex": 0
+    },
+    "0f25d2c3-8846-47ce-b88b-bbe883d16320": {
+      "ProjectGuid": "0f25d2c3-8846-47ce-b88b-bbe883d16320",
+      "DisplayName": "winAPIEngine",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "기타 파일",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 2
+}
