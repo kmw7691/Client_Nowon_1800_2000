@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="CAPIEngine.cpp" />
     <ClCompile Include="CCollider.cpp" />
+    <ClCompile Include="CCollisionMgr.cpp" />
     <ClCompile Include="CInputMgr.cpp" />
     <ClCompile Include="CObjectRyu.cpp" />
     <ClCompile Include="CRef.cpp" />
@@ -159,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="CAPIEngine.h" />
     <ClInclude Include="CCollider.h" />
+    <ClInclude Include="CCollisionMgr.h" />
     <ClInclude Include="CInputMgr.h" />
     <ClInclude Include="CObjectRyu.h" />
     <ClInclude Include="CRef.h" />

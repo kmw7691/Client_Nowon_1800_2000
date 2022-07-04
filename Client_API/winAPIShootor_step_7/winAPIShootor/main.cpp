@@ -21,6 +21,7 @@
 #include "CBullet.h"
 
 #include "CEnemy.h"     //
+#include "CCollisionMgr.h"
 
 //ryu ref
 #include <list>
@@ -100,6 +101,9 @@ public:
     {
         CAPIEngine::OnCreate();
 
+        CCollisionMgr::GetInst();
+
+
 
         CInputMgr::GetInst()->Create(mhWnd);
         CInputMgr::GetInst()->AddKey("OnMoveLeft", 'A');
@@ -153,7 +157,8 @@ public:
             //탄환은 생성시 비활성으로
             tpBullet->SetIsActive(false);
 
-
+            //
+            CCollisionMgr::GetInst()->AddUnit(tpBullet);
 
 
             mBullets.push_back(tpBullet);
@@ -169,6 +174,7 @@ public:
         mpEnemy->SetVelocity(SVector2D(+1.0f, 0.0f) * 100.0f);
 
 
+        CCollisionMgr::GetInst()->AddUnit(mpEnemy);
        
 
 
@@ -319,6 +325,9 @@ public:
         }
                
 
+        CCollisionMgr::ReleaseInst();
+
+
         CAPIEngine::OnDestroy();
     }
     virtual void OnUpdate(float tDeltaTime) override
@@ -328,6 +337,8 @@ public:
 
 
         //collision
+        CCollisionMgr::GetInst()->Update(tDeltaTime);
+
 
         //'원 대 원' 충돌 알고리즘 test
         //      '적' vs '주인공기체가 발사한 일반탄환들' 만 가정한다.
