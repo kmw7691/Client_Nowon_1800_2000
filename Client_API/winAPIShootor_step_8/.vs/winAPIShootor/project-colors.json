@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "1d208419-4f8d-4173-b34d-43fc00879c72": {
+      "ProjectGuid": "1d208419-4f8d-4173-b34d-43fc00879c72",
+      "DisplayName": "winAPIShootor",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
