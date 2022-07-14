@@ -1,0 +1,18 @@
+﻿  CAPIEngine.cpp
+C:\Client_Nowon_1800_2000\Client_API\winAPIShootor_step_11\winAPIEngine\SVector2D.h(152,14): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Client_Nowon_1800_2000\Client_API\winAPIShootor_step_11\winAPIEngine\CAPIEngine.cpp(288,81): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Client_Nowon_1800_2000\Client_API\winAPIShootor_step_11\winAPIEngine\CAPIEngine.cpp(288,67): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Client_Nowon_1800_2000\Client_API\winAPIShootor_step_11\winAPIEngine\CAPIEngine.cpp(288,53): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Client_Nowon_1800_2000\Client_API\winAPIShootor_step_11\winAPIEngine\CAPIEngine.cpp(288,39): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Client_Nowon_1800_2000\Client_API\winAPIShootor_step_11\winAPIEngine\CAPIEngine.cpp(293,13): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Client_Nowon_1800_2000\Client_API\winAPIShootor_step_11\winAPIEngine\CAPIEngine.cpp(293,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CAniSeq.cpp
+  CAnimator.cpp
+  CCollisionMgr.cpp
+C:\Client_Nowon_1800_2000\Client_API\winAPIShootor_step_11\winAPIEngine\SVector2D.h(152,14): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CUnit.cpp
+C:\Client_Nowon_1800_2000\Client_API\winAPIShootor_step_11\winAPIEngine\SVector2D.h(152,14): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Client_Nowon_1800_2000\Client_API\winAPIShootor_step_11\winAPIEngine\CUnit.cpp(89,33): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Client_Nowon_1800_2000\Client_API\winAPIShootor_step_11\winAPIEngine\CUnit.cpp(90,34): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  winAPIEngine.vcxproj -> C:\Client_Nowon_1800_2000\Client_API\winAPIShootor_step_11\bin\winAPIEngine.lib
