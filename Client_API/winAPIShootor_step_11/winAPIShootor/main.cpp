@@ -153,6 +153,15 @@ public:
         PFEnemy = CreatePrefab<CEnemy>(mpTexEnemy, 0.5f, 0.5f, SVector2D(400.0f, 100.0f));
 
 
+        CAnimator* tpAnimEnemy = PFEnemy->CreateAnimation("AnimEnemy", this);
+        tpAnimEnemy->SetOwnerObject(PFEnemy);
+        tpAnimEnemy->AddAniSeq("ani_idle_enemy", 0.05f, 7, L"resources/paladin_idle");
+        tpAnimEnemy->AddAniSeq("ani_attack_enemy", 0.08f, 7, L"resources/paladin_attack", ANI_PO::ONCE);
+
+        PFEnemy->mpAnimator->mStrKeyPrevAniSeq = "ani_idle_enemy";
+        PFEnemy->mpAnimator->mStrKeyCurAniSeq = "ani_idle_enemy";
+
+
 
 
         //주인공 게임 객체 하나를 복제로 생성
@@ -361,10 +370,25 @@ public:
             //todo
             mpEnemy->DoFire(mBulletEnemys);
 
+
+            //현재 애니메이션 시퀀스를 기억시켜두고
+            //(교체된 애니메이션 시퀀스를 플레이하고 이전 애니메이션 시퀀스로 돌아가기 위해)
+            mpEnemy->mpAnimator->mStrKeyPrevAniSeq = mpEnemy->mpAnimator->mStrKeyCurAniSeq;
+            //애니메이션 시퀀스를 교체한다
+            mpEnemy->mpAnimator->mStrKeyCurAniSeq = "ani_attack_enemy";
+            mpEnemy->mpAnimator->mpCurAniSeq->mCurFrameIndex = 0;
+            mpEnemy->mpAnimator->mpCurAniSeq->mAniTime = 0.0f;
+
+
+
+
+
+
+
             //mpEnemy->mTimeTick = 0.0f;  //오차가 있을수 있다
 
             //오차보정
-            float tDiff = mpEnemy->mTimeTick - 2.0f;
+            float tDiff = mpEnemy->mTimeTick - 10.0f;
             mpEnemy->mTimeTick = tDiff;
         }
         else
