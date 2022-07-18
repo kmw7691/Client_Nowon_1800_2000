@@ -9,6 +9,7 @@
 
 
 
+
 //HINSTANCE CAPIEngine::hInst = nullptr;
 
 
@@ -287,13 +288,48 @@ void CAPIEngine::DrawCircle(float tX, float tY, float tRadius)
     //Ellipse(mhDC, tX - tRadius, tY - tRadius, tX + tRadius, tY + tRadius);
     Ellipse(mpBackBuffer->mhDCMem, tX - tRadius, tY - tRadius, tX + tRadius, tY + tRadius);
 }
-void CAPIEngine::DrawTexture(float tX, float tY, CTexture* tpTexture)
+
+void CAPIEngine::DrawTexture(float tX, float tY, CTexture* tpTexture, COLORREF tColorKey)
 {
-    BitBlt(this->mpBackBuffer->mhDCMem,//메모리dc
+    //BitBlt(this->mpBackBuffer->mhDCMem,//메모리dc
+    //    tX, tY,
+    //    tpTexture->mBitmapInfo.bmWidth, tpTexture->mBitmapInfo.bmHeight,
+    //    tpTexture->mhDCMem,//메모리 DC
+    //    0, 0, SRCCOPY);
+
+    TransparentBlt(this->mpBackBuffer->mhDCMem,
         tX, tY,
         tpTexture->mBitmapInfo.bmWidth, tpTexture->mBitmapInfo.bmHeight,
-        tpTexture->mhDCMem,//메모리 DC
-        0, 0, SRCCOPY);
+        tpTexture->mhDCMem,
+
+        0, 0,
+        tpTexture->mBitmapInfo.bmWidth, tpTexture->mBitmapInfo.bmHeight,
+        RGB(255, 255, 255)); // white
+}
+
+void CAPIEngine::DrawTexturePartial(float tX, float tY, CTexture* tpTex, int tRow, int tCol, int tIndex, COLORREF tColorKey)
+{
+    int tSrcWidth = tpTex->mBitmapInfo.bmWidth / tCol;
+    int tSrcHeight = tpTex->mBitmapInfo.bmHeight / tRow;
+
+
+    int tCurRow = tIndex / tCol;
+    int tCurCol = tIndex % tCol;
+
+    int tSrcX = tCurCol * tSrcWidth;
+    int tSrcY = tCurRow * tSrcHeight;
+
+    TransparentBlt(this->mpBackBuffer->mhDCMem,
+
+        tX, tY,
+        tSrcWidth, tSrcHeight,
+
+        tpTex->mhDCMem,
+
+        tSrcX, tSrcY,
+        tSrcWidth, tSrcHeight,
+
+        tColorKey);
 }
 
 

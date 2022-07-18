@@ -82,65 +82,82 @@ void CAnimator::UpdateAnimation(float t)
 
 void CAnimator::Render(CAPIEngine* tpEngine, float tX, float tY)
 {
-	int tIndex = mpCurAniSeq->mCurFrameIndex;
-	CTexture* tpTex = mpCurAniSeq->mTexs[tIndex];
-	if (tpTex)
+	if (ANI_SO::FRAME_FILE == mpCurAniSeq->mSpriteOption)
 	{
-		tpEngine->DrawTexture(tX, tY, tpTex);
+
+		int tIndex = mpCurAniSeq->mCurFrameIndex;
+		CTexture* tpTex = mpCurAniSeq->mTexs[tIndex];
+		if (tpTex)
+		{
+			tpEngine->DrawTexture(tX, tY, tpTex);
+		}
+
+		LateUpdate();
 	}
 
-	LateUpdate();
-	//late update
-	//switch (mpCurAniSeq->mPlayOption)
-	//{
-	//case ANI_PO::LOOP:
-	//{
-	//}
-	//break;
-	//case ANI_PO::ONCE:
-	//{
-	//	//마지막 프레임까지 애니메이션 되었다면,
-	//	//					그리고, 애니메이션 시간이 다 되엇다면
-	//	//이전에 하던 애니메이션을 플레이한다
-	//	if (mpCurAniSeq->mCurFrameIndex == mpCurAniSeq->mTotalFramesCount - 1)
-	//	{
-	//		mStrKeyCurAniSeq = mStrKeyPrevAniSeq;
+	else if (ANI_SO::SHEET_FILE == mpCurAniSeq->mSpriteOption)
+	{
+		int tIndex = mpCurAniSeq->mCurFrameIndex;
+		CTexture* tpTex = mpCurAniSeq->mTexs[0];
+		if (tpTex)
+		{
+			tpEngine->DrawTexturePartial(tX, tY, tpTex, mpCurAniSeq->mRow, mpCurAniSeq->mCol, tIndex);
+		}
 
-
-	//		mpCurAniSeq->mCurFrameIndex = 0;
-	//		mpCurAniSeq->mAniTime = 0.0f;
-	//	}
-	//}
-	//break;
-	//}
+		LateUpdate();
+	}
 }
 
 bool CAnimator::AddAniSeq(const string& tName, float tTimeinterval, int tTotalFramesCount, 
-												LPCWSTR tpFileName, ANI_PO tPlayOption)
+												LPCWSTR tpFileName, ANI_PO tPlayOption,
+												ANI_SO tSpriteOption,
+												int tRow, int tCol)
 {
 	CAniSeq* tpClip = new CAniSeq();
 
 	//ryu
 	tpClip->mId = tName;
 
-
 	tpClip->mPlayOption = tPlayOption;
-
 
 	tpClip->mTimeInterval = tTimeinterval;
 	tpClip->mTotalFramesCount = tTotalFramesCount;
 
 
-	for (int ti = 0; ti < tTotalFramesCount; ++ti)
+	tpClip->mSpriteOption = tSpriteOption;
+
+	tpClip->mRow = tRow;
+	tpClip->mCol = tCol;
+
+
+	if (ANI_SO::FRAME_FILE == tSpriteOption)
+	{
+		for (int ti = 0; ti < tTotalFramesCount; ++ti)
+		{
+			CTexture* tpTex = nullptr;
+			tpTex = new CTexture();
+
+			WCHAR szTemp[256] = { 0 };
+			wsprintf(szTemp, L"%s_%d.bmp", tpFileName, ti);
+
+			tpTex->LoadTexture(mpEngine->GetHInst(), mpEngine->GetHDC(), szTemp);
+			tpClip->mTexs.push_back(tpTex);
+		}
+
+		tpClip->SetSpriteFrameWH();
+	}
+	else if (ANI_SO::SHEET_FILE == tSpriteOption)
 	{
 		CTexture* tpTex = nullptr;
 		tpTex = new CTexture();
 
 		WCHAR szTemp[256] = { 0 };
-		wsprintf(szTemp, L"%s_%d.bmp", tpFileName, ti);
+		wsprintf(szTemp, L"%s.bmp", tpFileName);
 
 		tpTex->LoadTexture(mpEngine->GetHInst(), mpEngine->GetHDC(), szTemp);
 		tpClip->mTexs.push_back(tpTex);
+
+		tpClip->SetSpriteFrameWH(tRow, tCol);
 	}
 
 	mAniSeqs.insert(make_pair(tName, tpClip));

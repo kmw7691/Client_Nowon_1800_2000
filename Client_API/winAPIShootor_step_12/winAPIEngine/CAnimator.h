@@ -43,15 +43,16 @@ public:
 
 	//애니메이션 시퀀스를 등록하는 함수
 	bool AddAniSeq(const string& tName, float tTimeinterval, int tTotalFramesCount,
-								LPCWSTR tpFileName , ANI_PO tPlayOption = ANI_PO::LOOP);
+					LPCWSTR tpFileName,
+					ANI_PO tPlayOption = ANI_PO::LOOP,
+					ANI_SO tSpriteOption = ANI_SO::FRAME_FILE,
+					int tRow = 1, int tCol = 1);
 
 	
 	void SetDefaultAniSeq(const string& tStrDefaultAniSeq);
 	void PlayAni(const string& tStrAniSeq);
 
 	void LateUpdate();
-
-
 
 
 	//

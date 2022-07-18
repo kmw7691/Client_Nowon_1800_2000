@@ -11,6 +11,12 @@ enum ANI_PO
     ONCE,               //한번만 플레이
 };
 
+enum ANI_SO
+{
+    FRAME_FILE = 0,     //스프라이트 프레임이 파일단위로 존재
+    SHEET_FILE,         //스프라이트 프레임들이 하나의 스프라이트 시트파일에 존재
+};
+
 
 
 class CAniSeq
@@ -42,6 +48,12 @@ public:
     void Update(float tDeltaTime);
 
 
+    void SetSpriteFrameWH(int tRow = 1, int tCol = 1);
+
+
+
+
+
 public:
     string mId = "";                //애니메이션 시퀀스의 식별자 키
 
@@ -58,5 +70,17 @@ public:
 
     //
     ANI_PO mPlayOption = ANI_PO::LOOP;
+
+    ANI_SO mSpriteOption = ANI_SO::FRAME_FILE;
+
+
+    //프레임들의 너비, 높이
+    int mSpriteWidth = 0;
+    int mSpriteHeight = 0;
+
+    int mRow = 0;
+    int mCol = 0;
+
+    int mFrameCOL = 0;
 };
 

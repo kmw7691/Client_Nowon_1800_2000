@@ -1,4 +1,5 @@
 #include "CAniSeq.h"
+#include "CTexture.h"
 
 void CAniSeq::Update(float tDeltaTime)
 {
@@ -20,4 +21,12 @@ void CAniSeq::Update(float tDeltaTime)
 	{
 		mAniTime = mAniTime + tDeltaTime;
 	}
+}
+
+
+
+void CAniSeq::SetSpriteFrameWH(int tRow, int tCol)
+{
+	this->mSpriteWidth = this->mTexs[0]->mBitmapInfo.bmWidth / tCol;
+	this->mSpriteHeight = this->mTexs[0]->mBitmapInfo.bmHeight / tRow;
 }

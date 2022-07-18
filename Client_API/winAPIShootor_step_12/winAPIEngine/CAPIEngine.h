@@ -9,6 +9,9 @@
 
 #define MAX_LOADSTRING 100
 
+#pragma comment(lib,"msimg32.lib")
+
+
 //클래스 전방선언, 클래스의 이름만 알려준다.
 //포인터 변수의 크기는 컴파일러가 이미 알고 있기 때문에 
 //가능한 표현이다.
@@ -32,7 +35,10 @@ public:
 
 	//원그리기 기능은 엔진에서 구현
 	void DrawCircle(float tX, float tY, float tRadius);
-	void DrawTexture(float tX, float tY, CTexture* tpTexture);
+	void DrawTexture(float tX, float tY, CTexture* tpTexture, COLORREF tColorKey = RGB(255, 255, 255));
+
+	void DrawTexturePartial(float tX, float tY, CTexture* tpTex, int tRow, int tCol,
+							   int tIndex, COLORREF tColorKey = RGB(255, 255, 255));
 
 	//화면을 클리어하는 함수
 	void Clear(float tR = 1.0f, float tG = 1.0f, float tB = 1.0f);

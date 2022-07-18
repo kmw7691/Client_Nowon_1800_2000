@@ -38,7 +38,6 @@ void CUnit::Destroy()
 }
 
 
-
 void CUnit::Update(float tDeltaTime)
 {
 	if (mIsActive)
@@ -54,20 +53,23 @@ void CUnit::Render()
 {
 	if (mIsActive)
 	{
-		/*mWidth = mpTexture->mBitmapInfo.bmWidth;
-		mHeight = mpTexture->mBitmapInfo.bmHeight;*/
-
-		mDisplayX = mPosition.mX - mWidth * mAnchorX;
-		mDisplayY = mPosition.mY - mHeight * mAnchorY;
-		
 		if (nullptr != mpAnimator)
 		{
 			mpAnimator->UpdateAnimation(mpEngine->GetDeltaTime());
+
+			mWidth = mpAnimator->mpCurAniSeq->mSpriteWidth;
+			mHeight = mpAnimator->mpCurAniSeq->mSpriteHeight;
+			this->mDisplayX = this->mPosition.mX - mWidth * mAnchorX;
+			this->mDisplayY = this->mPosition.mY - mHeight * mAnchorY;
+
 			mpAnimator->Render(mpEngine, mDisplayX, mDisplayY);
 		}
 
 		else
 		{
+			mDisplayX = mPosition.mX - mWidth * mAnchorX;
+			mDisplayY = mPosition.mY - mHeight * mAnchorY;
+			
 			mpEngine->DrawTexture(mDisplayX, mDisplayY, mpTexture);
 		}
 		
@@ -78,7 +80,6 @@ void CUnit::Render()
 		//mpEngine->DrawCircle(mPosition.mX, mPosition.mY, mRadius);
 	}
 }
-
 
 
 void CUnit::SetTexture(CTexture* tpTexture)
@@ -100,7 +101,6 @@ void CUnit::SetAnchors(float tAnchorX, float tAnchorY)
 	mAnchorX = tAnchorX;
 	mAnchorY = tAnchorY;
 }
-
 
 
 CAnimator* CUnit::CreateAnimation(const string& tId, CAPIEngine* tpEngine)

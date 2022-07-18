@@ -26,6 +26,7 @@ using namespace std;
 
 
 
+
 class CRyuEngine : public CAPIEngine
 {
 public:
@@ -145,6 +146,11 @@ public:
         mpTexBullet->LoadTexture(this->hInst, this->mhDC, TEXT("resources/bongbullet.bmp"));
         //원본객체: CBullet타입의 프리팹 생성
         PFBullet = CreatePrefab<CBullet>(mpTexBullet, 0.5f, 0.5f, SVector2D(400.0f, 500.0f));
+            
+        CAnimator* tpAnimBullet = PFBullet->CreateAnimation("AnimBullet", this);
+        tpAnimBullet->SetOwnerObject(PFBullet);   
+        tpAnimBullet->AddAniSeq("ani_idle_bullet", 0.01f, 4 * 8, L"resources/explosionFull", ANI_PO::LOOP, ANI_SO::SHEET_FILE, 4, 8);
+        PFBullet->SetDefaultAniSeq("ani_idle_bullet");
 
         //
         mpTexEnemy = new CTexture();
