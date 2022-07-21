@@ -1,0 +1,33 @@
+﻿  CAnimator.cpp
+  CAniSeq.cpp
+  CAPIEngine.cpp
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\SVector2D.h(102,20): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CAPIEngine.cpp(73,85): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CAPIEngine.cpp(73,71): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CAPIEngine.cpp(73,57): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CAPIEngine.cpp(73,43): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CAPIEngine.cpp(129,13): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CAPIEngine.cpp(129,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CAPIEngine.cpp(158,13): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CAPIEngine.cpp(158,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CCollider.cpp
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\SVector2D.h(102,20): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CCollisionMgr.cpp
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\SVector2D.h(102,20): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CInputMgr.cpp
+  CObjectRyu.cpp
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\SVector2D.h(102,20): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CRef.cpp
+  CTexture.cpp
+  CUnit.cpp
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\SVector2D.h(102,20): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CUnit.cpp(150,36): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CUnit.cpp(151,37): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CUnit.cpp(161,35): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CUnit.cpp(162,36): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CUnit.cpp(187,39): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\CUnit.cpp(188,40): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SVector2D.cpp
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\winAPIEngine\SVector2D.h(102,20): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  winAPIEngine.vcxproj -> C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winAPIMatchPuzzle\winAPIMatchPuzzle_step_2a\bin\winAPIEngine.lib
