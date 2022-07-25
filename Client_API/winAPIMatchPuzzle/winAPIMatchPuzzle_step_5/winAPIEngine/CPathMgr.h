@@ -18,7 +18,7 @@ public:
 
 	bool MakePath(const string& tStrKey, const wchar_t* tpPath, const string& tStrBaseKey);
 
-private:
+public:
 	const wchar_t* FindPath(const string& tStrKey);
 
 

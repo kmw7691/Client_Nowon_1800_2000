@@ -51,6 +51,9 @@
     <ClCompile Include="CPathMgr.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="CResourcesMgr.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CAnimator.h">
@@ -99,6 +102,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="CPathMgr.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CResourcesMgr.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -30,3 +30,4 @@
 #include "CAniSeq.h"
 #include "CAnimator.h"
 #include "CPathMgr.h"
+#include "CResourcesMgr.h"

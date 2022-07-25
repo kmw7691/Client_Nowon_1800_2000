@@ -10,6 +10,7 @@
 #include <list>
 #include <time.h>
 #include "CPathMgr.h"
+#include "CResourcesMgr.h"
 
 using namespace std;
 
@@ -112,8 +113,28 @@ public:
         mpTexDefaultPiece = new CTexture();
         mpTexDefaultPiece->LoadTexture(hInst, mhDC, L"resources/block_0.bmp");
 
-        mpTexUISelect = new CTexture();
-        mpTexUISelect->LoadTexture(hInst, mhDC, L"resources/select_0.bmp");
+
+
+
+
+
+
+       /*mpTexUISelect = new CTexture();
+        mpTexUISelect->LoadTexture(hInst, mhDC, L"resources/select_0.bmp");*/
+        CTexture* tpTex = nullptr;
+        tpTex = CResourcesMgr::GetInstance()->LoadTexture("select_0", L"select_0.bmp", RESOUCES_PATH);
+        if (!tpTex)
+        {
+            OutputDebugString(L"bitmap image file load failed");
+
+            return;
+        }
+
+
+
+
+
+
 
         //프리팹 생성
         PFPiece = CreatePrefab<CPiece>(mpTexDefaultPiece, 0.5f, 0.5f, SVector2D(0.0f, 0.0f));
@@ -126,6 +147,13 @@ public:
             tpAnimator->AddAniSeq(L"resources/block_4", "BLUE", 0.0f, 1, ANI_PO::LOOP, ANI_SO::SHEET_FILE);
             tpAnimator->AddAniSeq(L"resources/block_5", "YELLOW", 0.0f, 1, ANI_PO::LOOP, ANI_SO::SHEET_FILE);
             PFPiece->SetDefaultAniSeq("BLACK");
+
+
+
+            mpTexUISelect = CResourcesMgr::GetInstance()->FindTexture("select_0");
+
+
+
 
 
         PFUISelect = CreatePrefab<CSelect>(mpTexUISelect, 0.5f, 0.5f, SVector2D::ZERO);
@@ -165,7 +193,7 @@ public:
         DestroyPrefab(PFUISelect);
         DestroyPrefab(PFPiece);
 
-        SAFE_DELETE(mpTexUISelect);
+        //SAFE_DELETE(mpTexUISelect);
         SAFE_DELETE(mpTexDefaultPiece);
 
 

@@ -6,6 +6,7 @@
 #include "CCollisionMgr.h"
 
 #include "CPathMgr.h"
+#include "CResourcesMgr.h"
 
 
 HINSTANCE CAPIEngine::hInst = nullptr;
@@ -213,7 +214,7 @@ MSG CAPIEngine::Run()
 
 
     CPathMgr::GetInstance()->Create();
-
+    CResourcesMgr::GetInstance()->Create(this);
 
     CInputMgr::GetInstance();
     CCollisionMgr::GetInstance();
@@ -250,6 +251,7 @@ MSG CAPIEngine::Run()
 
 
     CPathMgr::ReleaseInstance();
+    CResourcesMgr::ReleaseInstance();
 
 
     CCollisionMgr::ReleaseInstance();
