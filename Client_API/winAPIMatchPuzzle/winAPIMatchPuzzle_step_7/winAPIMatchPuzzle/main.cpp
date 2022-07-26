@@ -254,58 +254,10 @@ public:
             }
         }
 
-
         if (CInputMgr::GetInstance()->KeyUp("OnSelectHit"))
         {
-            OutputDebugString(L"Select Hit!!!!!!!!!\n");
-
-            //현재 선택된 퍼즐피스의 색상을 얻는다
-            int tColorIndex = mBoardAttrib[mCurY][mCurX];
-
-            WCHAR szTemp[256] = { 0 };
-            wsprintf(szTemp, L"color index : \t %d\n", tColorIndex);
-            OutputDebugString(szTemp);
-
-            //퍼즐피스들이 연속색상인지 검토한다
-            int tCount = DoCheckBlockAttrib(mCurX, mCurY, tColorIndex);
-
-            //연속된 색상 퍼즐피스가 3개 이상이라면
-            if (tCount >= 3)
-            {
-                WCHAR szTemp[256] = { 0 };
-                wsprintf(szTemp, L"conneting block count is over 3---->%d\n", tCount);
-                OutputDebugString(szTemp);
-
-
-                //해당 색상 퍼즐피스들을 없앤다
-                for (int tRow = 0; tRow < 5; ++tRow)
-                {
-                    for (int tCol = 0; tCol < 5; ++tCol)
-                    {
-                        if(1 == mCheckVisit[tRow][tCol])
-                        mBoardAttrib[tRow][tCol] = 0;       //빈칸은 검정색으로 가정
-                    }
-                }
-            }
-
-
-            //비워진 셀에 새로운 퍼즐피스들을 랜덤하게 생성
-            for (int tRow = 0; tRow < 5; ++tRow)
-            {
-                for (int tCol = 0; tCol < 5; ++tCol)
-                {
-                    if (0 == mBoardAttrib[tRow][tCol])
-                    {
-                        //1번 ~ 5번색상까지 랜덤하게 선택하여 퍼즐피스 색상결정
-                        int tRandAttrib = rand() % 5 + 1;
-
-                        mBoardAttrib[tRow][tCol] = tRandAttrib;
-                    }
-                }
-            }
+            DoSelect();
         }
-
-
         //마우스로 플레이
         //step_0
         //if (GetAsyncKeyState(VK_LBUTTON))
@@ -408,6 +360,10 @@ public:
                         tRect.bottom >= tPoint.y)
                     {
                         OutputDebugString(L"point vs rect collision\n");
+
+                        DoSelect();
+
+                        break;
                     }
                 }
             }
@@ -475,6 +431,58 @@ public:
               mpUISelect->Render();
         
         this->Present();
+    }
+
+    void DoSelect()
+    {
+       
+            OutputDebugString(L"Select Hit!!!!!!!!!\n");
+
+            //현재 선택된 퍼즐피스의 색상을 얻는다
+            int tColorIndex = mBoardAttrib[mCurY][mCurX];
+
+            WCHAR szTemp[256] = { 0 };
+            wsprintf(szTemp, L"color index : \t %d\n", tColorIndex);
+            OutputDebugString(szTemp);
+
+            //퍼즐피스들이 연속색상인지 검토한다
+            int tCount = DoCheckBlockAttrib(mCurX, mCurY, tColorIndex);
+
+            //연속된 색상 퍼즐피스가 3개 이상이라면
+            if (tCount >= 3)
+            {
+                WCHAR szTemp[256] = { 0 };
+                wsprintf(szTemp, L"conneting block count is over 3---->%d\n", tCount);
+                OutputDebugString(szTemp);
+
+
+                //해당 색상 퍼즐피스들을 없앤다
+                for (int tRow = 0; tRow < 5; ++tRow)
+                {
+                    for (int tCol = 0; tCol < 5; ++tCol)
+                    {
+                        if (1 == mCheckVisit[tRow][tCol])
+                            mBoardAttrib[tRow][tCol] = 0;       //빈칸은 검정색으로 가정
+                    }
+                }
+            }
+
+
+            //비워진 셀에 새로운 퍼즐피스들을 랜덤하게 생성
+            for (int tRow = 0; tRow < 5; ++tRow)
+            {
+                for (int tCol = 0; tCol < 5; ++tCol)
+                {
+                    if (0 == mBoardAttrib[tRow][tCol])
+                    {
+                        //1번 ~ 5번색상까지 랜덤하게 선택하여 퍼즐피스 색상결정
+                        int tRandAttrib = rand() % 5 + 1;
+
+                        mBoardAttrib[tRow][tCol] = tRandAttrib;
+                    }
+                }
+            }
+        
     }
 
 private:
