@@ -83,12 +83,13 @@ public:
         SRyuMesh tMeshScale;
         tMeshScale.tris =
         {
+            {0.0f,0.0f,0.0f,                0.0f,0.0f,0.0f,                 0.0f,0.0f,0.0f},
             {0.0f,0.0f,0.0f,                0.0f,0.0f,0.0f,                 0.0f,0.0f,0.0f}
         };
         
         
         //벡터와 스케일변환 행렬을 곱함
-        for (int ti = 0; ti < 1; ++ti)
+        for (int ti = 0; ti < 2; ++ti)
         {
             MultiplyMatrixVectorRyu(tMesh.tris[ti].p[0], tMeshScale.tris[ti].p[0], tMatScale);
             MultiplyMatrixVectorRyu(tMesh.tris[ti].p[1], tMeshScale.tris[ti].p[1], tMatScale);
@@ -107,6 +108,7 @@ public:
         SRyuMesh tMeshProj;
         tMeshProj.tris =
         {
+            {0.0f,0.0f,0.0f,                0.0f,0.0f,0.0f,                 0.0f,0.0f,0.0f},
             {0.0f,0.0f,0.0f,                0.0f,0.0f,0.0f,                 0.0f,0.0f,0.0f}
         };
 
