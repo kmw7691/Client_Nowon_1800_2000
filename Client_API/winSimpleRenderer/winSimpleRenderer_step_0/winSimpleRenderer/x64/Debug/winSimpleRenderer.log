@@ -1,0 +1,21 @@
+﻿  main.cpp
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winAPIEngine\SVector2D.h(102,20): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(53,29): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(53,22): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(52,27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(52,22): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(51,27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(51,22): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(57,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(57,13): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(56,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(56,13): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(55,30): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(55,22): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(61,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(61,13): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(60,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(60,13): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(59,30): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\winSimpleRenderer\main.cpp(59,22): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  winSimpleRenderer.vcxproj -> C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_0\bin\winSimpleRenderer.exe

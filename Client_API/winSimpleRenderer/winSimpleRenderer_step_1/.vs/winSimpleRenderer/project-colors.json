@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "1da20016-1a07-43ba-9562-0435d41355fa": {
+      "ProjectGuid": "1da20016-1a07-43ba-9562-0435d41355fa",
+      "DisplayName": "winAPIEngine",
+      "ColorIndex": 0
+    },
+    "9e7af208-b966-4107-8d53-39872f2bf2a9": {
+      "ProjectGuid": "9e7af208-b966-4107-8d53-39872f2bf2a9",
+      "DisplayName": "winSimpleRenderer",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
