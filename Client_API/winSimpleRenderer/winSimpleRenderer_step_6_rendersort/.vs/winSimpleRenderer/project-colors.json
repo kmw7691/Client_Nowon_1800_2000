@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a666b6f6-9457-4d5d-a453-fdeab0e25fcd": {
+      "ProjectGuid": "a666b6f6-9457-4d5d-a453-fdeab0e25fcd",
+      "DisplayName": "winSimpleRenderer",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

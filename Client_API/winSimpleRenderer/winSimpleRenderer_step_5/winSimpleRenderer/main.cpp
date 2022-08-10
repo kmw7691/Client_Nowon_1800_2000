@@ -174,7 +174,8 @@ public:
         //    { 0.0f, 0.0f, 1.0f,			1.0f, 0.0f, 0.0f,		1.0f, 0.0f, 1.0f },
         //};
         SRyuMesh tMesh;
-        tMesh.LoadFromObjectFile("resources/cube_888.obj");
+        //tMesh.LoadFromObjectFile("resources/cube_888.obj");
+        tMesh.LoadFromObjectFile("resources/slime.obj");
 
 
         //스케일 변환 행렬 
@@ -190,8 +191,8 @@ public:
 
         //스케일 변환 적용
         SRyuMesh tMeshScale;
-        tMeshScale.tris =
-        {
+        tMeshScale.tris = tMesh.tris;
+        /*{
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },            
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
 
@@ -209,9 +210,9 @@ public:
 
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-        };
+        };*/
         //벡터와 스케일 변환 행렬을 곱하자 
-        for (int ti = 0; ti < 12; ++ti)
+        for (int ti = 0; ti < tMesh.tris.size(); ++ti)
         {
             MultiplyMatrixVectorRyu(tMesh.tris[ti].p[0], tMeshScale.tris[ti].p[0], tMatScale);
             MultiplyMatrixVectorRyu(tMesh.tris[ti].p[1], tMeshScale.tris[ti].p[1], tMatScale);
@@ -256,8 +257,8 @@ public:
 
         //회전 변환 적용
         SRyuMesh tMeshRotate;
-        tMeshRotate.tris =
-        {
+        tMeshRotate.tris = tMeshScale.tris;
+        /*{
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
 
@@ -275,9 +276,9 @@ public:
 
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-        };
+        };*/
         //벡터와 회전 변환 행렬을 곱하자 
-        for (int ti = 0; ti < 12; ++ti)
+        for (int ti = 0; ti < tMeshScale.tris.size(); ++ti)
         {
             MultiplyMatrixVectorRyu(tMeshScale.tris[ti].p[0], tMeshRotate.tris[ti].p[0], tMatRotate);
             MultiplyMatrixVectorRyu(tMeshScale.tris[ti].p[1], tMeshRotate.tris[ti].p[1], tMatRotate);
@@ -300,14 +301,16 @@ public:
 
         tMatTranslate[3][0] = 0.0f;
         tMatTranslate[3][1] = 0.0f;
-        tMatTranslate[3][2] = 2.5f;     //z축 전방으로 6만큼 이동
+        tMatTranslate[3][2] = 25.0f;     //z축 전방으로 25만큼 이동
+        //tMatTranslate[3][2] = 5.5f;     //z축 전방으로 5.5만큼 이동
+        //tMatTranslate[3][2] = 2.5f;     //z축 전방으로 2.5만큼 이동
 
 
 
         //이동 변환 적용
         SRyuMesh tMeshTranslate;
-        tMeshTranslate.tris =
-        {
+        tMeshTranslate.tris = tMeshRotate.tris;
+        /*{
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
 
@@ -325,9 +328,9 @@ public:
 
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-        };
+        };*/
         //벡터와 이동 변환 행렬을 곱하자 
-        for (int ti = 0; ti < 12; ++ti)
+        for (int ti = 0; ti < tMeshRotate.tris.size(); ++ti)
         {
             MultiplyMatrixVectorRyu(tMeshRotate.tris[ti].p[0], tMeshTranslate.tris[ti].p[0], tMatTranslate);
             MultiplyMatrixVectorRyu(tMeshRotate.tris[ti].p[1], tMeshTranslate.tris[ti].p[1], tMatTranslate);
@@ -410,8 +413,8 @@ public:
 
         //투영 변환 적용
         SRyuMesh tMeshProj;
-        tMeshProj.tris =
-        {
+        tMeshProj.tris = tMeshTranslate.tris;             
+        /*{
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
 
@@ -429,7 +432,7 @@ public:
 
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
             { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-        };
+        };*/
 
         int ti = 0;
         //for (auto t:tMeshTranslate.tris)
