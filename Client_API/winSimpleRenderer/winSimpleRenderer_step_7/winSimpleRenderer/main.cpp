@@ -110,6 +110,17 @@ struct SRyuMesh
     }
 };
 
+//벡터의 덧셈
+const SRyuVector3 operator+(const SRyuVector3& tA, const SRyuVector3& tB)
+{
+    SRyuVector3 tVector;
+
+    tVector.x = tA.x + tB.x;
+    tVector.y = tA.y + tB.y;
+    tVector.z = tA.z + tB.z;
+
+    return tVector;
+}
 
 
 //벡터의 뺄셈
@@ -173,8 +184,6 @@ SRyuVector3 operator*(const float& tScalar, const SRyuVector3& tA)
 
 
 
-
-
 //4행4열짜리 행렬구조체
 //3차원을 다루려면 4by4짜리 변환행렬이 필요하다
 struct mat4x4
@@ -201,17 +210,65 @@ mat4x4 MatrixPointAt(SRyuVector3& tPos, SRyuVector3& tTarget, SRyuVector3& tUp)
     SRyuVector3 tNewRight = CrossProduct(tNewUp, tNewForward);
 
 
+    //newRight : x, newUp : y, newForward : z
+    tResult.m[0][0] = tNewRight.x;
+    tResult.m[1][0] = tNewRight.y;
+    tResult.m[2][0] = tNewRight.z;
+
+
+    tResult.m[0][1] = tNewUp.x;
+    tResult.m[1][1] = tNewUp.y;
+    tResult.m[2][1] = tNewUp.z;
+
+
+    tResult.m[0][2] = tNewForward.x;
+    tResult.m[1][2] = tNewForward.y;
+    tResult.m[2][2] = tNewForward.z;
+
+
+    tResult.m[3][0] = tPos.x;
+    tResult.m[3][1] = tPos.y;
+    tResult.m[3][2] = tPos.z;
+
+
+    tResult.m[3][3] = 1.0f;
+
     return tResult;
+}
+
+
+mat4x4 QuickInverse(mat4x4 const& tMat)
+{
+    mat4x4 inv{ 0.0f };
+
+    inv.m[0][0] = tMat.m[0][0];
+    inv.m[1][0] = tMat.m[0][1];
+    inv.m[2][0] = tMat.m[0][2];
+    inv.m[3][0] = -(tMat.m[3][0] * tMat.m[0][0] + tMat.m[3][1] * tMat.m[1][0] + tMat.m[3][2] * tMat.m[2][0]);
+    inv.m[0][1] = tMat.m[1][0];
+    inv.m[1][1] = tMat.m[1][1];
+    inv.m[2][1] = tMat.m[1][2];
+    inv.m[3][1] = -(tMat.m[3][0] * tMat.m[0][1] + tMat.m[3][1] * tMat.m[1][1] + tMat.m[3][2] * tMat.m[2][1]);
+    inv.m[0][2] = tMat.m[2][0];
+    inv.m[1][2] = tMat.m[2][1];
+    inv.m[2][2] = tMat.m[2][2];
+    inv.m[3][2] = -(tMat.m[3][0] * tMat.m[0][2] + tMat.m[3][1] * tMat.m[1][2] + tMat.m[3][2] * tMat.m[2][2]);
+
+    inv.m[3][3] = 1.0f;
+
+
+    return inv;
 }
 
 
 
 
-
-
-
 class CRyuEngine : public CAPIEngine
-{   
+{
+private:
+    SRyuVector3 mPosMainCamera = { 0.0f, 0.0f, 0.0f };//카메라의 위치 
+    SRyuVector3 mDirLook = { 0.0f, 0.0f,1.0f }; //z축 전방 방향
+
 
 public:
     CRyuEngine() {};
@@ -235,36 +292,6 @@ public:
         //render
         this->Clear(0.1f, 0.1f, 0.3f);    
 
-
-        //SRyuMesh tMesh;
-        //tMesh.tris =
-        //{
-        //    //CCW로 나열하였지만 윈도우 좌표계를 사용하고 있으므로 데카르트 좌표계에서는 CW
-        //    //CW: 해당 삼각형의 정점은 시계방향을 가정하고 데이터를 설정하였다. ( y축이 뒤집어 있는 점을 주의하자 )
-        //    //south
-        //    { 0.0f, 0.0f, 0.0f,			0.0f, 1.0f, 0.0f,		1.0f, 1.0f, 0.0f },
-        //    { 0.0f, 0.0f, 0.0f,			1.0f, 1.0f, 0.0f,		1.0f, 0.0f, 0.0f },
-
-        //    //east
-        //    { 1.0f, 0.0f, 0.0f,			1.0f, 1.0f, 0.0f,		1.0f, 1.0f, 1.0f },
-        //    { 1.0f, 0.0f, 0.0f,			1.0f, 1.0f, 1.0f,		1.0f, 0.0f, 1.0f },
-
-        //    //north
-        //    { 1.0f, 0.0f, 1.0f,			1.0f, 1.0f, 1.0f,		0.0f, 1.0f, 1.0f },
-        //    { 1.0f, 0.0f, 1.0f,			0.0f, 1.0f, 1.0f,		0.0f, 0.0f, 1.0f },
-
-        //    //west
-        //    { 0.0f, 0.0f, 1.0f,			0.0f, 1.0f, 1.0f,		0.0f, 1.0f, 0.0f },
-        //    { 0.0f, 0.0f, 1.0f,			0.0f, 1.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-        //    //top 
-        //    { 0.0f, 1.0f, 0.0f,			0.0f, 1.0f, 1.0f,		1.0f, 1.0f, 1.0f },
-        //    { 0.0f, 1.0f, 0.0f,			1.0f, 1.0f, 1.0f,		1.0f, 1.0f, 0.0f },
-
-        //    //bottom
-        //    { 0.0f, 0.0f, 1.0f,			0.0f, 0.0f, 0.0f,		1.0f, 0.0f, 0.0f },
-        //    { 0.0f, 0.0f, 1.0f,			1.0f, 0.0f, 0.0f,		1.0f, 0.0f, 1.0f },
-        //};
         SRyuMesh tMesh;
         //tMesh.LoadFromObjectFile("resources/cube_888.obj");
         tMesh.LoadFromObjectFile("resources/slime.obj");
@@ -284,25 +311,7 @@ public:
         //스케일 변환 적용
         SRyuMesh tMeshScale;
         tMeshScale.tris = tMesh.tris;
-        /*{
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },            
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
 
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-        };*/
         //벡터와 스케일 변환 행렬을 곱하자 
         for (int ti = 0; ti < tMesh.tris.size(); ++ti)
         {
@@ -312,30 +321,13 @@ public:
         }
 
 
-
-
-
-
-
-
-
-
         float tMatRotate[4][4] = { 0 };
         
-        /*tMatRotate[0][0] = 1.0f;
-        tMatRotate[1][1] = 1.0f;
-        tMatRotate[2][2] = 1.0f;
-        tMatRotate[3][3] = 1.0f;*/
+
         static float mTheta = 0.0f;
         mTheta += 1.0f * tDeltaTime;
 
-        //x축 회전축을 가정하고 회전
-        /*tMatRotate[0][0] = 1.0f;
-        tMatRotate[1][1] = cosf(mTheta);
-        tMatRotate[1][2] = sinf(mTheta);
-        tMatRotate[2][1] = -1.0f * sinf(mTheta);
-        tMatRotate[2][2] = cosf(mTheta);
-        tMatRotate[3][3] = 1.0f;*/
+
 
         //y축 회전축을 가정하고 회전
         tMatRotate[0][0] = cosf(mTheta);
@@ -346,29 +338,10 @@ public:
         tMatRotate[3][3] = 1.0f;
 
 
-
         //회전 변환 적용
         SRyuMesh tMeshRotate;
         tMeshRotate.tris = tMeshScale.tris;
-        /*{
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-        };*/
+ 
         //벡터와 회전 변환 행렬을 곱하자 
         for (int ti = 0; ti < tMeshScale.tris.size(); ++ti)
         {
@@ -376,11 +349,6 @@ public:
             MultiplyMatrixVectorRyu(tMeshScale.tris[ti].p[1], tMeshRotate.tris[ti].p[1], tMatRotate);
             MultiplyMatrixVectorRyu(tMeshScale.tris[ti].p[2], tMeshRotate.tris[ti].p[2], tMatRotate);
         }
-
-
-
-
-
 
 
         //이동변환행렬
@@ -398,29 +366,10 @@ public:
         //tMatTranslate[3][2] = 2.5f;     //z축 전방으로 2.5만큼 이동
 
 
-
         //이동 변환 적용
         SRyuMesh tMeshTranslate;
         tMeshTranslate.tris = tMeshRotate.tris;
-        /*{
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
 
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-        };*/
         //벡터와 이동 변환 행렬을 곱하자 
         for (int ti = 0; ti < tMeshRotate.tris.size(); ++ti)
         {
@@ -430,39 +379,26 @@ public:
         }
 
 
+        //뷰변환행렬 적용
+
+        //뷰변환행렬을 구한다
+        SRyuVector3 tDirUp = { 0.0f,1.0f,0.0f };
+        SRyuVector3 tPosTarget = mPosMainCamera + mDirLook;
+
+        mat4x4 tMatViewInverse = MatrixPointAt(mPosMainCamera, tPosTarget, tDirUp);
+        mat4x4 tMatView = QuickInverse(tMatViewInverse);
+
+        SRyuMesh tMeshView;
+        tMeshView.tris = tMeshTranslate.tris;
 
 
-
-
-
-
-
-
-
-
-
-
-        //정직하게.
-        //float tNear         = 0.7f;//0.1f;
-        //float tFar          = 1.0f;
-        //float tR            = 1.0f * 0.5f;
-        //float tL            = -1.0f * 1.0f * 0.5f;
-        //float tT            = 0.5f * 0.5f;
-        //float tB            = -1.0f * 0.5f * 0.5f;
-
-        //float tMatProj[4][4] = { 0 };
-
-        //tMatProj[0][0] = (2.0f * tNear) / (tR - tL);
-        //tMatProj[1][1] = (2.0f * tNear) / (tT - tB);	//customized instead of this
-        //tMatProj[2][2] = -1.0f * (tFar + tNear) / (tFar - tNear);
-        //tMatProj[3][2] = -2.0f * tNear * (tFar / (tFar - tNear));
-        ////tMatProj[2][3] = -1.0f;
-        //tMatProj[2][3] = 1.0f;		//z축 양의 방향을 모니터 안쪽방향으로 가정하였다. 
-        //tMatProj[3][3] = 0.0f;
-
-
-        //tMatProj[2][0] = (tR + tL) / (tR - tL);
-        //tMatProj[2][1] = (tT + tB) / (tT - tB);
+        //벡터와 뷰변환 행렬을 곱함
+        for (int ti = 0; ti < tMeshTranslate.tris.size(); ++ti)
+        {
+            MultiplyMatrixVectorRyu(tMeshTranslate.tris[ti].p[0], tMeshView.tris[ti].p[0], tMatView.m);
+            MultiplyMatrixVectorRyu(tMeshTranslate.tris[ti].p[1], tMeshView.tris[ti].p[1], tMatView.m);
+            MultiplyMatrixVectorRyu(tMeshTranslate.tris[ti].p[2], tMeshView.tris[ti].p[2], tMatView.m);
+        }
 
 
 
@@ -472,11 +408,7 @@ public:
         float tFov = 90.0f;     //시야각 degree
         float tAspectRatio = (float)ScreenHeight() / (float)ScreenWidth();      //Aspect Ratio 종횡비
         float tFovRad = 1.0f / tanf((tFov * 0.5f) * (3.14159f / 180.0f));
-
-        //float tR = 1.0f * 0.5f;
-        //float tL = -1.0f * 1.0f * 0.5f;
-        //float tT = 0.5f * 0.5f;
-        //float tB = -1.0f * 0.5f * 0.5f;
+    
 
         float tMatProj[4][4] = { 0 };
 
@@ -489,58 +421,17 @@ public:
         tMatProj[3][3] = 0.0f;
 
 
-        //tMatProj[2][0] = 0;//(tR + tL) / (tR - tL);
-        //tMatProj[2][1] = 0;//(tT + tB) / (tT - tB);
-
-
-
-
-
-
-
-        /*tMatProj[0][0] = 1.0f;
-        tMatProj[1][1] = 1.0f;
-        tMatProj[2][2] = 1.0f;
-        tMatProj[3][3] = 1.0f;*/
-
         //투영 변환 적용
         SRyuMesh tMeshProj;
-        tMeshProj.tris = tMeshTranslate.tris;             
-        /*{
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-            { 0.0f, 0.0f, 0.0f,			0.0f, 0.0f, 0.0f,		0.0f, 0.0f, 0.0f },
-        };*/
-
-
+        tMeshProj.tris = tMeshView.tris;             
 
         //레스터라이즈만을 위한 별도의 삼각형 목록 자료구조
         std::vector<SRyuTriangle> tRasterTriangles;
 
 
-
-
-
-
-
-
         int ti = 0;
         //for (auto t:tMeshTranslate.tris)
-        for (auto t:tMeshTranslate.tris)
+        for (auto t: tMeshView.tris)
         {
 
             SRyuVector3 tNormal;    //삼각형 면의 법선 벡터( 면에 수직인 단위벡터 )
@@ -572,13 +463,12 @@ public:
             tNormal.z = tNormal.z / tLength;
 
 
-
             SRyuVector3 tPosMid;    //삼각형의 중심점
             tPosMid.x = t.p[0].x + t.p[1].x + t.p[2].x;
             tPosMid.y = t.p[0].y + t.p[1].y + t.p[2].y;
             tPosMid.z = t.p[0].z + t.p[1].z + t.p[2].z;
 
-            SRyuVector3 mPosMainCamera = { 0.0f, 0.0f, 0.0f };//카메라의 위치 
+            //SRyuVector3 mPosMainCamera = { 0.0f, 0.0f, 0.0f };//카메라의 위치 
             SRyuVector3 tVecView;   //시선벡터
             tVecView.x = tPosMid.x - mPosMainCamera.x;
             tVecView.y = tPosMid.y - mPosMainCamera.y;
@@ -595,7 +485,6 @@ public:
             float tResultDot = tNormal.x * tVecView.x + tNormal.y * tVecView.y + tNormal.z * tVecView.z;
 
 
-
             //'빛' 이란 개념을 추가한다.이 빛은 방향 개념을 나타내고 있다.
             //( 빛의 위치는 (0,0,0)이고 크기는 1, 방향은 (0,0,1)이다. )
             SRyuVector3 tVecLight = { 0.0f, 0.0f, 1.0f };
@@ -605,12 +494,6 @@ public:
             //먼저 두 벡터의 내적을 이용하여 광량(빛의 양)을 구한다
             float tDotLightIntensity = tNormal.x * tVecLight.x + tNormal.y * tVecLight.y + tNormal.z * tVecLight.z;
             t.color = GetColor(tDotLightIntensity); //면의 색상(음영)값으로 설정
-
-
-
-
-
-
 
 
 
@@ -649,8 +532,6 @@ public:
 
                 tMeshProj.tris[ti].p[2].x *= 0.5f * (float)ScreenWidth();
                 tMeshProj.tris[ti].p[2].y *= 0.5f * (float)ScreenHeight();
-
-
 
 
                 //
@@ -692,10 +573,6 @@ public:
             }
 
         );
-
-
-
-
 
 
         //삼각형 그리기
@@ -755,12 +632,6 @@ private:
     CRyuEngine(const CRyuEngine&) {};
     CRyuEngine& operator=(const CRyuEngine&) {};
 };
-
-
-
-
-
-
 
 
 

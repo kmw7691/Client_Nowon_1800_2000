@@ -1,17 +1,18 @@
 ﻿  main.cpp
 C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winAPIEngine\SVector2D.h(102,20): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(706,43): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(706,33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(705,43): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(705,33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(704,43): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(704,33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(714,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(714,32): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(713,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(713,32): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(712,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(712,32): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(745,37): warning C4244: '=': 'float'에서 'uint8_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(746,37): warning C4244: '=': 'float'에서 'uint8_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(747,37): warning C4244: '=': 'float'에서 'uint8_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(583,43): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(583,33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(582,43): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(582,33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(581,43): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(581,33): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(591,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(591,32): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(590,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(590,32): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(589,42): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(589,32): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(622,37): warning C4244: '=': 'float'에서 'uint8_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(623,37): warning C4244: '=': 'float'에서 'uint8_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\winSimpleRenderer\main.cpp(624,37): warning C4244: '=': 'float'에서 'uint8_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  winSimpleRenderer.vcxproj -> C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\winSimpleRenderer\winSimpleRenderer_step_7\bin\winSimpleRenderer.exe
