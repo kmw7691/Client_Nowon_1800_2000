@@ -112,6 +112,100 @@ struct SRyuMesh
 
 
 
+//벡터의 뺄셈
+const SRyuVector3 operator-(const SRyuVector3& tA, const SRyuVector3& tB) 
+{
+    SRyuVector3 tVector;
+
+    tVector.x = tA.x - tB.x;
+    tVector.y = tA.y - tB.y;
+    tVector.z = tA.z - tB.z;
+
+    return tVector;
+}
+
+//벡터의 내적, 결과는 스칼라
+float DotProduct(const SRyuVector3& tA, const SRyuVector3& tB)
+{
+    return tA.x * tB.x + tA.y * tB.y + tA.z * tB.z;
+}
+
+
+//벡터의 외적, 결과는 벡터
+SRyuVector3 CrossProduct(const SRyuVector3& tA, const SRyuVector3& tB)
+{
+    SRyuVector3 tVector;
+
+    tVector.x = tA.y * tB.z - tA.z * tB.y;
+    tVector.y = tA.z * tB.x - tA.x * tB.z;
+    tVector.z = tA.x * tB.y - tA.y * tB.x;
+
+
+    return tVector;
+}
+
+
+//정규화 : 벡터의 크기를 1로 만드는것
+void Normalize(SRyuVector3& tA)
+{
+    //벡터의 크기를 구함
+    float tSize = std::sqrtf(DotProduct(tA, tA));
+
+    if (tSize > 0.0f)
+    {
+        tA.x = tA.x * (1.0f / tSize);
+        tA.y = tA.y * (1.0f / tSize);
+        tA.z = tA.z * (1.0f / tSize);
+    }
+}
+
+SRyuVector3 operator*(const float& tScalar, const SRyuVector3& tA)
+{
+    SRyuVector3 tVector;
+
+    tVector.x = tScalar * tA.x;
+    tVector.y = tScalar * tA.y;
+    tVector.z = tScalar * tA.z;
+
+    return tVector;
+}
+
+
+
+
+
+
+//4행4열짜리 행렬구조체
+//3차원을 다루려면 4by4짜리 변환행렬이 필요하다
+struct mat4x4
+{
+    float m[4][4] = { 0.0f };
+};
+
+
+
+//tPos : 카메라의 위치
+//tTarget : 카메라가 바라보는 지점
+//tUp : 상방벡터
+mat4x4 MatrixPointAt(SRyuVector3& tPos, SRyuVector3& tTarget, SRyuVector3& tUp)
+{
+    mat4x4 tResult{ 0.0f };
+
+    SRyuVector3 tNewForward = tTarget - tPos;
+    Normalize(tNewForward);
+
+    SRyuVector3 tProjectionUpOnToNewForward = DotProduct(tUp, tNewForward) * tNewForward;
+    SRyuVector3 tNewUp = tUp - tProjectionUpOnToNewForward;
+    Normalize(tNewUp);
+
+    SRyuVector3 tNewRight = CrossProduct(tNewUp, tNewForward);
+
+
+    return tResult;
+}
+
+
+
 
 
 

@@ -5,7 +5,12 @@
       "ProjectGuid": "a666b6f6-9457-4d5d-a453-fdeab0e25fcd",
       "DisplayName": "winSimpleRenderer",
       "ColorIndex": 0
+    },
+    "a4e3b64f-d165-4623-99c1-e198df8e3e58": {
+      "ProjectGuid": "a4e3b64f-d165-4623-99c1-e198df8e3e58",
+      "DisplayName": "winAPIEngine",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }
