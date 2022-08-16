@@ -16,8 +16,26 @@
 
 using namespace std;
 
+//이것은 정점을 나타내는 구조체의 정의이다
+//float 데이터 3개로 구성된 벡터이다
+// 이 정의는 시스템 메모리에 만들 데이터의 형식을 정의하는 것이다
+struct SimpleVertex
+{
+    XMFLOAT3 Pos;
+};
+
+
+
 class CRyuEngine : public CDxEngine
 {   
+    ID3D11VertexShader* mpVertexShader = nullptr;   //vertex shader 담당 객체
+    ID3D11PixelShader* mpPixelShader = nullptr;     //pixel shader 담당 객체
+
+    ID3D11InputLayout* mpVertexLayout = nullptr;    //input layout 객체
+
+    ID3D11Buffer* mpVertexBuffer = nullptr;         //비디오램에 있는 임의의 데이터, 이 예시에서는 삼각형 데이터를 담을 것이다
+
+
 public:
     CRyuEngine() {};
     virtual ~CRyuEngine() {};
