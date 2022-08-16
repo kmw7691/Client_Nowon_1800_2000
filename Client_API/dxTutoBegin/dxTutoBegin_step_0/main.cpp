@@ -36,7 +36,8 @@ public:
         CDxEngine::OnUpdate(tDeltaTime);
 
 
-        this->Clear(0.1f, 0.1f, 0.3f);    
+        //this->Clear(0.1f, 0.1f, 0.3f);    
+        this->Clear(Colors::MediumPurple);
 
         this->Present();
     }

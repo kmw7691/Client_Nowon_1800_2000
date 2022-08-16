@@ -42,12 +42,26 @@ void CDxEngine::OnUpdate(float tDeltaTime)
 
 void CDxEngine::Clear(float tR, float tG, float tB)
 {
-   
+    //XM : DirectX Math
+    XMVECTORF32 tColor;
+    tColor.f[0] = tR;
+    tColor.f[1] = tG;
+    tColor.f[2] = tB;
+
+    //render target view를 해당 색상으로 클리어
+    mpImmediateContext->ClearRenderTargetView(mpRenderTargetView, tColor);
 }
+void CDxEngine::Clear(XMVECTORF32 tColor)
+{
+    mpImmediateContext->ClearRenderTargetView(mpRenderTargetView, tColor);
+}
+
 
 void CDxEngine::Present()
 {
-
+    //랜더링 수행 명령들을 실제로 수행한다
+    //결과적으로 OM에서 모니터로 뿌려진다
+    mpSwapChain->Present(0, 0);
 }
 
 BOOL CDxEngine::Create(HINSTANCE hInstance, int nCmdShow)
@@ -74,9 +88,10 @@ MSG CDxEngine::Run()
     MSG msg = { 0 };
 
 
-    mhDC = GetDC(mhWnd);
+    //mhDC = GetDC(mhWnd);
 
-    
+    InitDevice();
+
 
     OnCreate();
 
@@ -109,18 +124,13 @@ MSG CDxEngine::Run()
     OnDestroy();
 
 
+    CleanupDevice();
 
-
-    ReleaseDC(mhWnd, mhDC);
+    //ReleaseDC(mhWnd, mhDC);
 
 
     return msg;
 }
-
-
-
-
-
 
 
 

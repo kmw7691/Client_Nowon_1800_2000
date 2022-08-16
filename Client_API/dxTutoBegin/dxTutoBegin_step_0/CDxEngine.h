@@ -26,6 +26,7 @@ public:
 	virtual void OnUpdate(float tDeltaTime);
 
 	void Clear(float tR = 0.0f, float tG = 0.0f, float tB = 0.0f);
+	void Clear(XMVECTORF32 tColor);
 	void Present();
 
 	
