@@ -234,6 +234,7 @@ HRESULT CDxEngine::InitDevice()
 
 
 
+    //win api
 
     RECT rc;
     GetClientRect(mhWnd, &rc);
@@ -250,12 +251,14 @@ HRESULT CDxEngine::InitDevice()
 
     D3D_DRIVER_TYPE driverTypes[] =
     {
-        D3D_DRIVER_TYPE_HARDWARE,       //그래픽 카드 장치에서 랜더링 처리
+        D3D_DRIVER_TYPE_HARDWARE,       //그래픽 카드 장치 하드웨어에서 랜더링 처리
         D3D_DRIVER_TYPE_WARP,           //고속 성능의 소프트웨어 랜더링 처리. HARDWARE에서 온전히 랜더링 처리가 이루어지지 못하는 경우 최선의 방법으로 소프트웨어적으로 랜더링 처리
         D3D_DRIVER_TYPE_REFERENCE,      //CPU에서 완전히 소프트웨어적으로 랜더링 처리, 매우 느림, 개발용( 앞에 단계의 드라이버들이 모두 실패해도 이것으로 가능 )
     };
     UINT numDriverTypes = ARRAYSIZE(driverTypes);
 
+    //피처 레벨 : 임의의 DirectX 버전별로 존재하는 임의의 기능 집합
+    //그래픽카드에서 지원하는 DirectX 기능 집합
     D3D_FEATURE_LEVEL featureLevels[] =
     {
         D3D_FEATURE_LEVEL_11_1,
@@ -284,7 +287,23 @@ HRESULT CDxEngine::InitDevice()
     if (FAILED(hr))
         return hr;
 
-    // Obtain DXGI factory from device (since we used nullptr for pAdapter above)
+
+
+    //DXGI : DirectX Graphic Infra
+    //다이렉트 엑스가 제공하는 그래픽처리를 위한 일반적인 '기반이 되는 구조'
+    //Obtain DXGI factory from device
+
+
+    //COM : 바이너리 단위의 호환가능한 부품
+    //DirectX도 COM기술을 기반으로 만들어져 있다
+    //__uuidof 임의의 COM객체의 식별자를 얻는 연산자
+
+
+    //C++에서 제공하는 형변환 연산자
+    //static_cast<T> : 정적 형변환
+    //dynamic_cast<T> : 동적 형변환
+    //const_cast<T> : 상수속성을 제거하는 형변환
+    //reinterpret_cast<T> : C++의 형변환 연산자 중 하나. 어느 타입이라도 가능
     IDXGIFactory1* dxgiFactory = nullptr;
     {
         IDXGIDevice* dxgiDevice = nullptr;
@@ -304,6 +323,7 @@ HRESULT CDxEngine::InitDevice()
     if (FAILED(hr))
         return hr;
 
+
     // Create swap chain
     IDXGIFactory2* dxgiFactory2 = nullptr;
     hr = dxgiFactory->QueryInterface(__uuidof(IDXGIFactory2), reinterpret_cast<void**>(&dxgiFactory2));
@@ -315,15 +335,15 @@ HRESULT CDxEngine::InitDevice()
         {
             (void)mpImmediateContext->QueryInterface(__uuidof(ID3D11DeviceContext1), reinterpret_cast<void**>(&mpImmediateContext1));
         }
-
+        //스왑체인 구조에 대한 설명 정보 작성
         DXGI_SWAP_CHAIN_DESC1 sd = {};
-        sd.Width = width;
-        sd.Height = height;
-        sd.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+        sd.Width = width;                           //버퍼의 너비
+        sd.Height = height;                         //버퍼의 높이
+        sd.Format = DXGI_FORMAT_R8G8B8A8_UNORM;     //32비트 색상 정보를 사용
         sd.SampleDesc.Count = 1;
         sd.SampleDesc.Quality = 0;
         sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-        sd.BufferCount = 1;
+        sd.BufferCount = 1;                         //back buffer의 갯수
 
         hr = dxgiFactory2->CreateSwapChainForHwnd(mpd3dDevice, mhWnd, &sd, nullptr, nullptr, &mpSwapChain1);
         if (SUCCEEDED(hr))
@@ -366,14 +386,19 @@ HRESULT CDxEngine::InitDevice()
     if (FAILED(hr))
         return hr;
 
+    //back buffer를 Render Target View로 만든다
+    //여기서 View라는 개념은 DirectX에서 이미지 데이터를 쓸수있는 임의의 메모리를 지칭하는 용어이다
     hr = mpd3dDevice->CreateRenderTargetView(pBackBuffer, nullptr, &mpRenderTargetView);
     pBackBuffer->Release();
     if (FAILED(hr))
         return hr;
 
+    //OM : Output Merger의 줄임말
+    //Output Merger에 Render Target View를 설정
     mpImmediateContext->OMSetRenderTargets(1, &mpRenderTargetView, nullptr);
 
     // Setup the viewport
+    //뷰포트를 설정한다
     D3D11_VIEWPORT vp;
     vp.Width = (FLOAT)width;
     vp.Height = (FLOAT)height;
@@ -381,7 +406,7 @@ HRESULT CDxEngine::InitDevice()
     vp.MaxDepth = 1.0f;
     vp.TopLeftX = 0;
     vp.TopLeftY = 0;
-    mpImmediateContext->RSSetViewports(1, &vp);
+    mpImmediateContext->RSSetViewports(1, &vp); //RS : Render State
 
     return S_OK;
 }
