@@ -32,7 +32,7 @@ class CRyuEngine : public CDxEngine
     ID3D11PixelShader* mpPixelShader = nullptr;     //pixel shader 담당 객체
 
     ID3D11InputLayout* mpVertexLayout = nullptr;    //input layout 객체
-
+    //랜더링에 사용할 자원
     ID3D11Buffer* mpVertexBuffer = nullptr;         //비디오램에 있는 임의의 데이터, 이 예시에서는 삼각형 데이터를 담을 것이다
 
 
@@ -43,6 +43,99 @@ public:
     virtual void OnCreate() override
     {
         CDxEngine::OnCreate();
+
+        HRESULT hr = S_OK;
+
+
+        /*
+                HLSL : High Level Shader Language : 마이크로 소프트에서 만든 DirectX용 셰이더 언어
+
+                GLSL : Open GL용 셰이더 언어
+                CG : 엔디비아에서 ㅁ나든 셰이더 언어
+        */
+
+        //compile the vertex shader
+        ID3DBlob* pVSBlob = nullptr;
+        //셰이더 소스코드를 컴파일하며 'Blob'객체에 담는다(담긴 내용은 Byte Code형식이다)
+        hr = CompileShaderFromFile(L"VertexShader.hlsl", "main", "vs_4_0", &pVSBlob);
+        if (FAILED(hr))
+        {
+            MessageBox(nullptr,
+                L"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", L"Error", MB_OK);
+           // return hr;
+        }
+
+        // Create the vertex shader
+        //Vertex Shader 객체를 생성한다(Blob 객체를 참고하여 만든다)
+        hr = mpd3dDevice->CreateVertexShader(pVSBlob->GetBufferPointer(), pVSBlob->GetBufferSize(), nullptr, &mpVertexShader);
+        if (FAILED(hr))
+        {
+            pVSBlob->Release();
+           // return hr;
+        }
+
+        // Define the input layout
+        D3D11_INPUT_ELEMENT_DESC layout[] =
+        {
+            { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+        };
+        UINT numElements = ARRAYSIZE(layout);
+
+        // Create the input layout
+        hr = mpd3dDevice->CreateInputLayout(layout, numElements, pVSBlob->GetBufferPointer(),
+            pVSBlob->GetBufferSize(), &mpVertexLayout);
+        pVSBlob->Release();
+        if (FAILED(hr))
+           // return hr;
+
+        // Set the input layout
+        mpImmediateContext->IASetInputLayout(mpVertexLayout);
+
+
+
+
+
+
+
+        // Compile the pixel shader
+        ID3DBlob* pPSBlob = nullptr;
+        //셰이더 소스코드를 컴파일하며 'Blob'객체에 담는다(담긴 내용은 Byte Code형식이다)
+        hr = CompileShaderFromFile(L"PixelShader.hlsl", "main", "ps_4_0", &pPSBlob);
+        if (FAILED(hr))
+        {
+            MessageBox(nullptr,
+                L"The FX file cannot be compiled.  Please run this executable from the directory that contains the FX file.", L"Error", MB_OK);
+            //return hr;
+        }
+
+
+        // Create the pixel shader
+        //Pixel Shader 객체( mpVertexShader )를 생성한다(Blob 객체를 참고하여 만든다)
+        hr = mpd3dDevice->CreatePixelShader(pPSBlob->GetBufferPointer(), pPSBlob->GetBufferSize(), nullptr, &mpPixelShader);
+        pPSBlob->Release();
+
+
+        //삼각형의 정점 3개의 데이터를 설정
+        //지역변수(시스템 메모리에 있는 것이다)
+        SimpleVertex vertices[] = 
+        {
+            XMFLOAT3(0.0f,0.0f,0.5f),   //생성자 호출
+            XMFLOAT3(0.0f,1.0f,0.5f),
+            XMFLOAT3(1.0f,0.0f,0.5f),
+        };
+
+        D3D11_BUFFER_DESC bd = {};
+        bd.Usage                    = D3D11_USAGE_DEFAULT;      //버퍼는 기본용도 버퍼로 사용하겠다
+        bd.ByteWidth                = sizeof(SimpleVertex)*3;   //정점 세개 크기의 데이터이다
+        bd.BindFlags                = D3D11_BIND_VERTEX_BUFFER; //vertex buffer용도로 사용하겠다
+        bd.CPUAccessFlags           = 0;                        //cpu의 접근은 불허한다
+
+        D3D11_SUBRESOURCE_DATA InitData = {};
+        InitData.pSysMem = vertices;
+
+        //bd와 InitData를 찹고하여 mpVertexBuffer를 생성한다
+        //vertexbuffer는 기하도형을 그리기 위해 필요한 데이터이다
+        mpd3dDevice->CreateBuffer(&bd, &InitData, &mpVertexBuffer);
     }
     virtual void OnDestroy() override
     {

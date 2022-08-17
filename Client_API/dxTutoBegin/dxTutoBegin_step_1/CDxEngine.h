@@ -29,6 +29,7 @@ public:
 	void Clear(XMVECTORF32 tColor);
 	void Present();
 
+	HRESULT CompileShaderFromFile(const WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut);
 	
 	float GetDeltaTime() const
 	{
@@ -71,7 +72,7 @@ protected:
 	HWND mhWnd;
 	HDC mhDC;
 
-private:
+protected:
 	LARGE_INTEGER mSecond;
 	LARGE_INTEGER mTime;
 
