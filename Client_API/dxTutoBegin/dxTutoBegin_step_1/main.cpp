@@ -1,14 +1,7 @@
 ﻿// winAPITraning00.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
-/*
-    Window API
-    윈도우 운영체제에서 제공하는 기능들을 다룰 수 있는 API( Application Programming Interface )
 
-
-    DirectX API
-    그래픽 카드 장치를 빠르게 접근하여 제공하는 기능들을 다룰 수 있는 API
-*/
 
 #include "framework.h"
 
@@ -21,9 +14,25 @@ using namespace std;
 // 이 정의는 시스템 메모리에 만들 데이터의 형식을 정의하는 것이다
 struct SimpleVertex
 {
-    XMFLOAT3 Pos;
-    //XMFLOAT4 Pos;
+    XMFLOAT3 Pos;       //정점의 위치정보 x,y,z
+        
+    XMFLOAT4 Color;     //정점의 색상정보 r,g,b,a
 };
+
+//이것은 ConstantBuffer에 사용할 데이터를 나타내는 구조체의 정의이다
+//변환 행렬들을 멤버로 갖게 하였다
+// 이 정의는 시스템 메모리에 만들 데이터의 형식을 정의하는 것이다
+struct CBTransform
+{
+    XMMATRIX mWorld;            //월드변환행렬
+    XMMATRIX mView;             //뷰변환행렬
+    XMMATRIX mProjection;       //투영변환행렬
+};
+
+
+//월드변환 : 로컬좌표계 기준의 정점의 위치를 월드좌표계 기준의 정점의 위치로 변환한다
+//뷰변환 : 월드좌표계 기준의 정점의 위치를 뷰좌표계 기준의 정점의 위치로 변환한다
+//투영변환 : 뷰좌표계 기준의 정점의 위치를 정규 뷰 기준의 정점의 위치로 변환하고 근 평면에 투영하는 변환이다
 
 
 
@@ -36,6 +45,14 @@ class CRyuEngine : public CDxEngine
     //랜더링에 사용할 자원
     ID3D11Buffer* mpVertexBuffer = nullptr;         //비디오램에 있는 임의의 데이터, 이 예시에서는 삼각형 데이터를 담을 것이다
 
+
+
+    ID3D11Buffer* mpCBTransform = nullptr;          //변환행렬 정보들을 담을 상수버퍼이다
+
+
+    XMMATRIX mMatWorld;
+    XMMATRIX mMatView;
+    XMMATRIX mMatProjection;
 
 public:
     CRyuEngine() {};
@@ -82,7 +99,8 @@ public:
         D3D11_INPUT_ELEMENT_DESC layout[] =
         {
             //시맨틱 이름, 시맨틱 인덱스, 타입, 정점버퍼메모리의 슬롯인덱스(0~15), 오프셋, 고급옵션, 고급옵션
-            { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+            { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+            { "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }
         };
         UINT numElements = ARRAYSIZE(layout);
 
@@ -130,12 +148,23 @@ public:
 
         ////삼각형의 정점 3개의 데이터를 설정
         ////지역변수(시스템 메모리에 있는 것이다)
-        SimpleVertex vertices[] = 
+        //SimpleVertex vertices[] = 
+        //{
+        //    XMFLOAT3(0.0f,0.0f,0.5f),   //XMFLOAT3 생성자 호출하여 정점정보 만듦
+        //    XMFLOAT3(0.0f,1.0f,0.5f),
+        //    XMFLOAT3(1.0f,0.0f,0.5f)
+        //};
+
+
+        SimpleVertex vertices[] =
         {
-            XMFLOAT3(0.0f,0.0f,0.5f),   //생성자 호출
-            XMFLOAT3(0.0f,1.0f,0.5f),
-            XMFLOAT3(1.0f,0.0f,0.5f)
+            XMFLOAT3(0.0f,0.0f,0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f),
+            XMFLOAT3(0.0f,1.0f,0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f),
+            XMFLOAT3(1.0f,0.0f,0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f),
         };
+
+
+
 
         D3D11_BUFFER_DESC bd = {};
         bd.Usage                    = D3D11_USAGE_DEFAULT;      //버퍼는 기본용도 버퍼로 사용하겠다
@@ -160,9 +189,41 @@ public:
 
         mpImmediateContext->IASetVertexBuffers(0, 1, &mpVertexBuffer, &stride, &offset);
 
-        //mpImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+        mpImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
         ////도형을 어떤 방식으로 그릴지 방법을 정하는 것이다
         ////여기서는 정점 3개를 모아서 하나의 삼각형을 구성하는 형태로 랜더링한다
+
+
+
+
+
+
+        //Constant Buffer 상수버퍼 생성
+        //주설명
+        bd.Usage = D3D11_USAGE_DEFAULT;                 //버퍼는 기본용도 버퍼로 사용하겠다
+        bd.ByteWidth = sizeof(CBTransform) * 1;    
+        bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;        //vertex buffer용도로 사용하겠다
+        bd.CPUAccessFlags = 0;                          //cpu의 접근은 불허한다
+
+        //부설명은 안함
+        //InitData.pSysMem = ;                //해당 시스템 메모리에 내용을 넘긴다
+
+
+        //월드변환행렬
+        mMatWorld = XMMatrixIdentity();         //단위행렬
+
+        //뷰변환행렬
+        mMatView = XMMatrixIdentity();          //단위행렬
+
+        XMVECTOR tEye = XMVectorSet(0.0f, 2.0f, -5.0f, 1.0f);
+        XMVECTOR tAt = XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f);
+        XMVECTOR tUp = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+
+        mMatView = XMMatrixLookAtLH(tEye, tAt, tUp);
+
+        //투영변환행렬
+        mMatProjection = XMMatrixIdentity();    //단위행렬
+
 
     }
     virtual void OnDestroy() override

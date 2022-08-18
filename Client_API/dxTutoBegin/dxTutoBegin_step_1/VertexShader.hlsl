@@ -1,6 +1,10 @@
 
 
-
+struct VS_OUTPUT
+{
+	float4 Pos:SV_POSITION;
+	float4 Color:COLOR0;
+};
 
 
 
@@ -8,7 +12,13 @@
 //리턴값은 PixelShader로 전달된다
 //
 //정점셰이더 : 정점 하나당 작동하는 프로그램
-float4 main( float4 pos : POSITION ) : SV_POSITION
+VS_OUTPUT main( float4 pos : POSITION, float4 Color : COLOR)
 {
-	return pos;
+	VS_OUTPUT o = (VS_OUTPUT)0;
+
+	o.Pos = pos;
+
+	o.Color = Color;
+
+	return o;
 }
