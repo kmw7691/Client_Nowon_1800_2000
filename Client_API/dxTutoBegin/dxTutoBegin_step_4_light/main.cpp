@@ -2,32 +2,17 @@
 //
 
 /*
-    step_2
-
-    
-
-     i) 변환행렬 적용 심화
-
-        정육면체를 하나 더 '랜더링'
-
-     ii) Depth/Stencil Buffer 적용
-
-        DirectX는  Z Buffer기법을 사용한다
+    step_4_light
 
 
+    1) 조명에 의한 음영처리
+        
+        빛벡터 dot 법선벡터 = -> 광량을 구한다
 
-     올바른 랜더링 처리를 위해서는 
-     앞쪽에 있는 물체가 뒤쪽에 있는 물체를 가릴 수 있는 처리가 필요하다
-        이를위한 처리 방법은
-        크게 두가지가 있다
-            a)Z sort: 정렬해야 하므로 정렬에 시간이 많이 든다. 면(삼각형-->정점3개)단위이다
-            //삼각형 갯수에 비례해서 정렬시간이 소요된다
-            b)Z buffer: 물체까지의 거리를 픽셀 단위로 깊이버퍼에 기억시켜두고 랜더링시 랜더링하려는 물체의 거리와 이미 기억되어 있는 거리를 비교하여 앞에 있다고 판단되면 랜더링한다
+        이 광량으로 음영을 표현한다
 
-            깊이버퍼DepthBuffer( ZBuffer)는 정규화되어 있다. [0,1]
-            값이 작을수록 앞에 있는 물체이다.
+        램버트Rambert 조명모델
 
-            픽셀단위이므로 소요시간은 상수 시간이다 O(1)
 */
 
 #include "framework.h"
@@ -43,26 +28,30 @@ struct SimpleVertex
 {
     XMFLOAT3 Pos;       //정점의 위치 정보 x,y,z
     
-    XMFLOAT4 Color;     //정점의 색상 정보 r,g,b,a
+    //XMFLOAT4 Color;     //정점의 색상 정보 r,g,b,a
+
+    XMFLOAT3 Normal;    //법선벡터 정보 x,y,z
 };
 
 //이것은 ConstantBuffer 에 사용할 데이터를 나타내는 구조체의 정의이다 
 //변환행렬들을 멤버로 갖게 하였다.
 //  이 정의는 시스템 메모리에 만들 데이터의 형식을 정의하는 것이다
+
+//16byte 단위로 정렬해야 안전
 struct CBTransform
 {
     XMMATRIX mWorld;            //월드 변환행렬
     XMMATRIX mView;             //뷰 변환행렬
     XMMATRIX mProjection;       //투영 변환행렬
+
+    //빛에 기반한 음영 계산을 위해 빛방향 벡터, 빛의 색상에 대한 정보를 XMFLOAT4로 선언하였다
+    XMFLOAT4 LightDir;          //빛방향 벡터
+    XMFLOAT4 LightColor;        //빛 색상
 };
 
 //월드변환:     로컬좌표계 기준의 정점의 위치를 월드좌표계 기준에 정점의 위치로 변환한다
 //뷰변환:      월드좌표계 기준의 정점의 위치를 뷰좌표계 기준에 정점의 위치로 변환한다
 //투영 변환:    뷰좌표계 기준의 정점의 위치를 정규뷰 기준에 정점의 위치로 변환하고 근평면에 투영하는 변환이다.
-
-
-
-
 
 
 
@@ -138,7 +127,8 @@ public:
         {
             // 시맨틱 이름, 시맨틱 인덱스, 타입, 정점버퍼메모리의 슬롯인덱스(0~15),오프셋, 고급옵션, 고급옵션
             { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-            { "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+            //{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+            { "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
         };
         UINT numElements = ARRAYSIZE(layout);
 
@@ -198,23 +188,61 @@ public:
         //};
         
         //정육면체를 이루는 정점 데이터 8개
+        //SimpleVertex vertices[] =
+        //{
+        //    { XMFLOAT3(-1.0f, 1.0f, -1.0f),     XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },     //0
+        //    { XMFLOAT3(1.0f, 1.0f, -1.0f),      XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },     //1
+        //    { XMFLOAT3(1.0f, 1.0f, 1.0f),       XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },     //2
+        //    { XMFLOAT3(-1.0f, 1.0f, 1.0f),      XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },     //3
+
+        //    { XMFLOAT3(-1.0f, -1.0f, -1.0f),    XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },     //4    
+        //    { XMFLOAT3(1.0f, -1.0f, -1.0f),     XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },     //5
+        //    { XMFLOAT3(1.0f, -1.0f, 1.0f),      XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },     //6
+        //    { XMFLOAT3(-1.0f, -1.0f, 1.0f),     XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },     //7
+        //};
+      
         SimpleVertex vertices[] =
         {
-            { XMFLOAT3(-1.0f, 1.0f, -1.0f),     XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },     //0
-            { XMFLOAT3(1.0f, 1.0f, -1.0f),      XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },     //1
-            { XMFLOAT3(1.0f, 1.0f, 1.0f),       XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },     //2
-            { XMFLOAT3(-1.0f, 1.0f, 1.0f),      XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },     //3
+            { XMFLOAT3(-1.0f, 1.0f, -1.0f),     XMFLOAT3(0.0f, 1.0f, 0.0f) },     
+            { XMFLOAT3(1.0f, 1.0f, -1.0f),      XMFLOAT3(0.0f, 1.0f, 0.0f) },     
+            { XMFLOAT3(1.0f, 1.0f, 1.0f),       XMFLOAT3(0.0f, 1.0f, 0.0f) },     
+            { XMFLOAT3(-1.0f, 1.0f, 1.0f),      XMFLOAT3(0.0f, 1.0f, 0.0f) },     
+                                                       
+            { XMFLOAT3(-1.0f, -1.0f, -1.0f),    XMFLOAT3(0.0f, -1.0f, 0.0f) },        
+            { XMFLOAT3(1.0f, -1.0f, -1.0f),     XMFLOAT3(0.0f, -1.0f, 0.0f) },    
+            { XMFLOAT3(1.0f, -1.0f, 1.0f),      XMFLOAT3(0.0f, -1.0f, 0.0f) },    
+            { XMFLOAT3(-1.0f, -1.0f, 1.0f),     XMFLOAT3(0.0f, -1.0f, 0.0f) },    
 
-            { XMFLOAT3(-1.0f, -1.0f, -1.0f),    XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },     //4    
-            { XMFLOAT3(1.0f, -1.0f, -1.0f),     XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },     //5
-            { XMFLOAT3(1.0f, -1.0f, 1.0f),      XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },     //6
-            { XMFLOAT3(-1.0f, -1.0f, 1.0f),     XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },     //7
+            { XMFLOAT3(-1.0f, -1.0f, 1.0f),     XMFLOAT3(-1.0f, 0.0f, 0.0f) },     
+            { XMFLOAT3(-1.0f, -1.0f, -1.0f),    XMFLOAT3(-1.0f, 0.0f, 0.0f) },    
+            { XMFLOAT3(-1.0f, 1.0f, -1.0f),     XMFLOAT3(-1.0f, 0.0f, 0.0f) },    
+            { XMFLOAT3(-1.0f, 1.0f, 1.0f),      XMFLOAT3(-1.0f, 0.0f, 0.0f) },
+
+            { XMFLOAT3(1.0f, -1.0f, 1.0f),      XMFLOAT3(1.0f, 0.0f, 0.0f) },         
+            { XMFLOAT3(1.0f, -1.0f, -1.0f),     XMFLOAT3(1.0f, 0.0f, 0.0f) },     
+            { XMFLOAT3(1.0f, 1.0f, -1.0f),      XMFLOAT3(1.0f, 0.0f, 0.0f) },     
+            { XMFLOAT3(1.0f, 1.0f, 1.0f),       XMFLOAT3(1.0f, 0.0f, 0.0f) },
+
+            { XMFLOAT3(-1.0f, -1.0f, -1.0f),    XMFLOAT3(0.0f, 0.0f, -1.0f) },         
+            { XMFLOAT3(1.0f, -1.0f, -1.0f),     XMFLOAT3(0.0f, 0.0f, -1.0f) },     
+            { XMFLOAT3(1.0f, 1.0f, -1.0f),      XMFLOAT3(0.0f, 0.0f, -1.0f) },     
+            { XMFLOAT3(-1.0f, 1.0f, -1.0f),     XMFLOAT3(0.0f, 0.0f, -1.0f) },
+
+            { XMFLOAT3(-1.0f, -1.0f, 1.0f),     XMFLOAT3(0.0f, 0.0f, 1.0f) },
+            { XMFLOAT3(1.0f, -1.0f, 1.0f),      XMFLOAT3(0.0f, 0.0f, 1.0f) },
+            { XMFLOAT3(1.0f, 1.0f, 1.0f),       XMFLOAT3(0.0f, 0.0f, 1.0f) },
+            { XMFLOAT3(-1.0f, 1.0f, 1.0f),      XMFLOAT3(0.0f, 0.0f, 1.0f) },
         };
+
+
+
+
+
         //주설명
         D3D11_BUFFER_DESC bd = {};
         bd.Usage            = D3D11_USAGE_DEFAULT;      //버퍼는 기본 용도 버퍼로 사용하겠다
         //bd.ByteWidth        = sizeof(SimpleVertex)*3;   //정점 세개 크기의 데이터이다.
-        bd.ByteWidth        = sizeof(SimpleVertex) * 8;   
+        bd.ByteWidth        = sizeof(SimpleVertex) * 24;   
         bd.BindFlags        = D3D11_BIND_VERTEX_BUFFER; //vertex buffer용도로 사용하겠다.
         bd.CPUAccessFlags   = 0;                        //CPU의 접근은 불허한다
         //부설명
@@ -247,20 +275,20 @@ public:
             3,1,0,  //<--예시, 윗쪽 면
             2,1,3,  //<--예시, 윗쪽 면
 
-            0,5,4,
-            1,5,0,
-
-            3,4,7,
-            0,4,3,
-
-            1,6,5,
-            2,6,1,
-
-            2,7,6,
-            3,7,2,
-
             6,4,5,
             7,4,6,
+
+            11,9,8,
+            10,9,11,
+
+            14,12,13,
+            15,12,14,
+
+            19,17,16,
+            18,17,19,
+
+            22,20,21,
+            23,20,22
         };
         //주설명
         //D3D11_BUFFER_DESC bd = {};
@@ -371,15 +399,24 @@ public:
         //mMatWorld_1 = XMMatrixRotationY(t*1.5f);
 
         //XMMATRIX tRotation = XMMatrixRotationY(t * 3.5f);
-        XMMATRIX tRotation = XMMatrixRotationY(t * 0.5f);
-        XMMATRIX tTranslate = XMMatrixTranslation(3.0f, 0.0f, 0.0f);
+        XMMATRIX tRotation = XMMatrixRotationY(t * 1.0f);
+        XMMATRIX tTranslate = XMMatrixTranslation(0.0f, 0.0f, 10.0f);
 
         //물체의 입장에서 보면 '자전' 운동이 일어난다.
-        //mMatWorld_1 = tRotation* tTranslate;// 행벡터*  회전변환행렬*이동변환행렬 //회전하고 그리고나서 이동한다
+        mMatWorld_1 = tRotation* tTranslate;// 행벡터*  회전변환행렬*이동변환행렬 //회전하고 그리고나서 이동한다
 
         //행렬의 곱셈은 교환법칙이 성립하지 않는다
         //물체의 입장에서 보면 '공전' 운동이 일어난다
-        mMatWorld_1 = tTranslate*tRotation;// 행벡터* 이동변환행렬*회전변환행렬 //이동하고 그리고나서 회전한다
+        //mMatWorld_1 = tTranslate*tRotation;// 행벡터* 이동변환행렬*회전변환행렬 //이동하고 그리고나서 회전한다
+
+
+
+
+        //조명데이터
+        XMFLOAT4 tLightDir   = XMFLOAT4(0.0f, 0.0f, 1.0f, 0.0f);      //빛 벡터
+        XMFLOAT4 tLightColor = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);      //빛 색상 : 붉은색으로 가정
+
+
 
 
 
@@ -440,9 +477,11 @@ public:
             그러므로, 전치해서 넘겨줘야 한다
         */
 
-        cb.mWorld = XMMatrixTranspose(mMatWorld_0);           //전치
-        cb.mView = XMMatrixTranspose(mMatView);            //전치
-        cb.mProjection = XMMatrixTranspose(mMatProjection);      //전치
+        cb.mWorld                   = XMMatrixTranspose(mMatWorld_0);           //전치
+        cb.mView                    = XMMatrixTranspose(mMatView);            //전치
+        cb.mProjection              = XMMatrixTranspose(mMatProjection);      //전치
+        cb.LightDir                 = tLightDir;
+        cb, tLightColor             = tLightColor;
 
         //UpdateSubresource 상수버퍼의 내용을 갱신해주는 함수
         mpImmediateContext->UpdateSubresource(mpCBTransform, 0, nullptr, &cb, 0, 0);
@@ -465,9 +504,11 @@ public:
             그러므로, 전치해서 넘겨줘야 한다
         */
 
-        cb.mWorld = XMMatrixTranspose(mMatWorld_1);           //전치
-        cb.mView = XMMatrixTranspose(mMatView);            //전치
-        cb.mProjection = XMMatrixTranspose(mMatProjection);      //전치
+        cb.mWorld                    = XMMatrixTranspose(mMatWorld_1);           //전치
+        cb.mView                     = XMMatrixTranspose(mMatView);            //전치
+        cb.mProjection               = XMMatrixTranspose(mMatProjection);      //전치
+        cb.LightDir                  = tLightDir;
+        cb, tLightColor              = tLightColor;
 
         //UpdateSubresource 상수버퍼의 내용을 갱신해주는 함수
         mpImmediateContext->UpdateSubresource(mpCBTransform, 0, nullptr, &cb, 0, 0);

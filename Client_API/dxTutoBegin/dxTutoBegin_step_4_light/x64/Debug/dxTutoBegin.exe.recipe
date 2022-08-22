@@ -2,15 +2,15 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\dxTutoBegin\dxTutoBegin_step_3_depthbuffer_\x64\Debug\dxTutoBegin.exe</FullPath>
+      <FullPath>C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\dxTutoBegin\dxTutoBegin_step_4_light\x64\Debug\dxTutoBegin.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\dxTutoBegin\dxTutoBegin_step_3_depthbuffer_\x64\Debug\PixelShader.cso</FullPath>
+      <FullPath>C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\dxTutoBegin\dxTutoBegin_step_4_light\x64\Debug\PixelShader.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\dxTutoBegin\dxTutoBegin_step_3_depthbuffer_\x64\Debug\VertexShader.cso</FullPath>
+      <FullPath>C:\Users\User\Documents\GitHub\Client_Nowon_1800_2000\Client_API\dxTutoBegin\dxTutoBegin_step_4_light\x64\Debug\VertexShader.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />
