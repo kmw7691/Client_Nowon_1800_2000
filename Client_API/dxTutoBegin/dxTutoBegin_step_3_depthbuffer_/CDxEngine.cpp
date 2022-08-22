@@ -50,10 +50,16 @@ void CDxEngine::Clear(float tR, float tG, float tB)
 
     //render target view를 해당 색상으로 클리어
     mpImmediateContext->ClearRenderTargetView(mpRenderTargetView, tColor);
+
+    //깊이/스텐실버퍼 클리어, 깊이값은 최대 1로 정규화
+    mpImmediateContext->ClearDepthStencilView(mpDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 void CDxEngine::Clear(XMVECTORF32 tColor)
 {
     mpImmediateContext->ClearRenderTargetView(mpRenderTargetView, tColor);
+
+    //깊이/스텐실버퍼 클리어, 깊이값은 최대 1로 정규화
+    mpImmediateContext->ClearDepthStencilView(mpDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 }
 
 void CDxEngine::Present()
@@ -414,16 +420,31 @@ HRESULT CDxEngine::InitDevice()
 
 
     D3D11_TEXTURE2D_DESC descDepth = {};
-    descDepth.Width = width;
-    descDepth.Height = height;
-    descDepth.MipLevels = 1;
-    descDepth.ArraySize = 1;
-    descDepth.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;//깊이버퍼24, 스텐실8 -->32,      [0,1]의 값으로 정규화되어있다.
-    //ryu 이어서 하자
+    descDepth.Width                     = width;
+    descDepth.Height                    = height;
+    descDepth.MipLevels                 = 1;
+    descDepth.ArraySize                 = 1;
+    descDepth.Format                    = DXGI_FORMAT_D24_UNORM_S8_UINT;//깊이버퍼24, 스텐실8 -->32,      [0,1]의 값으로 정규화되어있다.
+    descDepth.SampleDesc.Count          = 1;    //샘플링은 텍스쳐를 다룰때 보자
+    descDepth.SampleDesc.Quality        = 0;
+    descDepth.Usage                     = D3D11_USAGE_DEFAULT;
+    descDepth.BindFlags                 = D3D11_BIND_DEPTH_STENCIL; //깊이/스텐실 버퍼용이다
+    descDepth.CPUAccessFlags            = 0;
+    descDepth.MiscFlags                 = 0;
+    //DirectX에서 깊이/스텐실버퍼는 '텍스쳐' 리소스의 한 종류로 취급한다        
+    mpd3dDevice->CreateTexture2D(&descDepth, nullptr, &mpDepthStencil);
 
 
+    D3D11_DEPTH_STENCIL_VIEW_DESC descDSV = {};
+    descDSV.Format              = descDSV.Format;
+    descDSV.ViewDimension       = D3D11_DSV_DIMENSION_TEXTURE2D;
+    descDSV.Texture2D.MipSlice  = 0;
 
+    //깊이/스텐실 뷰를 만든다
+    mpd3dDevice->CreateDepthStencilView(mpDepthStencil, &descDSV, &mpDepthStencilView);
 
+    //랜더타겟뷰에 깊이스텐실 뷰 설정
+    mpImmediateContext->OMSetRenderTargets(1, &mpRenderTargetView, mpDepthStencilView);
 
 
 
