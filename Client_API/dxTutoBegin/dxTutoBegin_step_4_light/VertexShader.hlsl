@@ -39,9 +39,20 @@ PS_INPUT main(VS_INPUT i)
 	o.Pos = mul(o.Pos, View);
 	o.Pos = mul(o.Pos, Projection);
 
-	//일단은 그냥 넘기는 것으로 테스트
-	o.Norm = i.Norm;
 
+
+
+	//일단은 그냥 넘기는 것으로 테스트
+	//o.Norm = i.Norm;
+
+
+	//월드변환을 적용하여 월드좌표계의 법선데이터로 인지
+
+	//위치로 인지하고있다(x,y,z,1)
+	o.Norm = mul(float4(i.Norm, 1), World).xyz;
+
+	//벡터로 인지하고있다(x,y,z,0)
+	o.Norm = mul(float4(i.Norm, 0), World).xyz;
 
 	//색상 정보는 그대로 다음 단계로 넘긴다
 	//o.Color = i.Color;

@@ -413,9 +413,24 @@ public:
 
 
         //조명데이터
-        XMFLOAT4 tLightDir   = XMFLOAT4(0.0f, 0.0f, 1.0f, 0.0f);      //빛 벡터
-        XMFLOAT4 tLightColor = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);      //빛 색상 : 붉은색으로 가정
+        XMFLOAT4 tLightDir   = XMFLOAT4(1.0f, -1.0f, 1.0f, 0.0f);      //빛 벡터
+        XMFLOAT4 tLightColor = XMFLOAT4(1.0f, 0.5f, 0.5f, 1.0f);      //빛 색상 : 붉은색으로 가정
 
+
+
+        XMMATRIX tRotateLight = XMMatrixRotationX(2.0f * t);
+        XMVECTOR tVectorLight = XMLoadFloat4(&tLightDir);                        //XMFLOAT4 ----> XMVECTOR
+        tVectorLight = XMVector3Transform(tVectorLight, tRotateLight);           //행렬과 벡터의 곱셈, 결과는 벡터
+        XMStoreFloat4(&tLightDir, tVectorLight);                                //XMVECTOR ----> XMFLOAT4
+
+
+
+
+
+        //빛방향을 뒤집어서 계산
+        tLightDir.x = tLightDir.x * (-1.0f);
+        tLightDir.y = tLightDir.y * (-1.0f);
+        tLightDir.z = tLightDir.z * (-1.0f);
 
 
 
@@ -451,6 +466,8 @@ public:
         mpImmediateContext->VSSetConstantBuffers(0, 1, &mpCBTransform);
 
         mpImmediateContext->PSSetShader(mpPixelShader, nullptr, 0);
+
+        mpImmediateContext->PSSetConstantBuffers(0, 1, &mpCBTransform);
         
         
         ////장치즉시컨텍스트 에게 정점버퍼의 내용을(기하도형) 기반으로 그리라고(랜더링을) 지시한다
@@ -481,7 +498,7 @@ public:
         cb.mView                    = XMMatrixTranspose(mMatView);            //전치
         cb.mProjection              = XMMatrixTranspose(mMatProjection);      //전치
         cb.LightDir                 = tLightDir;
-        cb, tLightColor             = tLightColor;
+        cb.LightColor             = tLightColor;
 
         //UpdateSubresource 상수버퍼의 내용을 갱신해주는 함수
         mpImmediateContext->UpdateSubresource(mpCBTransform, 0, nullptr, &cb, 0, 0);
@@ -508,7 +525,7 @@ public:
         cb.mView                     = XMMatrixTranspose(mMatView);            //전치
         cb.mProjection               = XMMatrixTranspose(mMatProjection);      //전치
         cb.LightDir                  = tLightDir;
-        cb, tLightColor              = tLightColor;
+        cb.LightColor              = tLightColor;
 
         //UpdateSubresource 상수버퍼의 내용을 갱신해주는 함수
         mpImmediateContext->UpdateSubresource(mpCBTransform, 0, nullptr, &cb, 0, 0);

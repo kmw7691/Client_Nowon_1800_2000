@@ -40,8 +40,11 @@ float4 main(PS_INPUT i) :SV_TARGET
 	float4 color = 0;
 
 
+
 	//빛벡터와 법선벡터를 이용하여 음영을 만들자
-	saturate(dot((float3)LightDir, i, Norm)* LightColor);
+	//광량 = 빛벡터 dot 법선벡터<----[-1,1]
+	//범위제한(광량) <---[0,12\]
+	color = saturate(dot((float3)LightDir, i.Norm) * LightColor);
 
 	color.a = 1;
 
