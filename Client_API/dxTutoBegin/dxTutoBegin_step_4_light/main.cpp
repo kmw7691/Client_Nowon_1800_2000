@@ -418,10 +418,7 @@ public:
 
 
 
-        XMMATRIX tRotateLight = XMMatrixRotationX(2.0f * t);
-        XMVECTOR tVectorLight = XMLoadFloat4(&tLightDir);                        //XMFLOAT4 ----> XMVECTOR
-        tVectorLight = XMVector3Transform(tVectorLight, tRotateLight);           //행렬과 벡터의 곱셈, 결과는 벡터
-        XMStoreFloat4(&tLightDir, tVectorLight);                                //XMVECTOR ----> XMFLOAT4
+        
 
 
 
@@ -433,6 +430,12 @@ public:
         tLightDir.z = tLightDir.z * (-1.0f);
 
 
+        //조명을 회전
+        XMMATRIX tRotateLight = XMMatrixRotationX(0.1f * t);
+        XMVECTOR tVectorLight = XMLoadFloat4(&tLightDir);                        //XMFLOAT4 ----> XMVECTOR
+        tVectorLight = XMVector3Transform(tVectorLight, tRotateLight);           //행렬과 벡터의 곱셈, 결과는 벡터
+        //XMVector3TransformCoord                                                //행렬과 벡터(위치)의 곱셈, 결과는 벡터(위치)
+        XMStoreFloat4(&tLightDir, tVectorLight);                                //XMVECTOR ----> XMFLOAT4
 
 
 
